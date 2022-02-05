@@ -1,0 +1,11 @@
+<app-month-title [month]=month></app-month-title>
+<div id="dayWrapper">
+    <div>Sunday</div>
+    <div>Monday</div>
+    <div>Tuesday</div>
+    <div>Wednesday</div>
+    <div>Thursday</div>
+    <div>Friday</div>
+    <div>Saturday</div>
+    <app-day *ngFor="let day of days" [day]=day></app-day>
+</div>
