@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input , Output , EventEmitter} from '@angular/core'; 
 import { MonthNames } from 'src/app/models/monthNames';
 
 @Component({
@@ -8,6 +8,8 @@ import { MonthNames } from 'src/app/models/monthNames';
 })
 export class MonthTitleComponent implements OnInit {
   @Input() month: number;
+  @Output() next = new EventEmitter();
+  @Output() previous = new EventEmitter();
 
   monthNames: string[] = [
     MonthNames.JAN,
@@ -27,6 +29,14 @@ export class MonthTitleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  goToNextMonth = () => {
+    this.next.emit();
+  }
+   
+  goToPreviousMonth = () => {
+    this.previous.emit();
   }
 
 }

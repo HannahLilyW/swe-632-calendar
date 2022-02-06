@@ -1,1 +1,5 @@
-<div id='monthTitle'>{{monthNames[month]}}</div>
+<div class = "month-title-container">
+    <button class = "previous">Previous</button>
+    <div id='monthTitle'>{{monthNames[month]}}</div>
+    <button class ="next" (click)=goToNextMonth()> Next</button>
+</div>

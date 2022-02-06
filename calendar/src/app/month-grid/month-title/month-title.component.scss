@@ -2,4 +2,16 @@
     background-color: yellow;
     text-align: center;
     padding: 20px;
+    font-size: xx-large;
+}
+.month-title-container{
+    display: flex;
+    align-items: center ;
+}
+.previous,.next,#monthTitle{
+  flex-basis: 33%;
+
+}
+.next{
+    //text-align: right;
 }
