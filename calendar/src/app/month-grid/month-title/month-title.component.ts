@@ -8,6 +8,7 @@ import { MonthNames } from 'src/app/models/monthNames';
 })
 export class MonthTitleComponent implements OnInit {
   @Input() month: number;
+  @Input() year: number;
   @Output() next = new EventEmitter();
   @Output() previous = new EventEmitter();
 

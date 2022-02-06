@@ -14,16 +14,29 @@ export class MonthGridComponent implements OnInit {
   // Includes the last few days of the previous month and the next few days of the next month.
   days: Date[] = [];
   month: number;
+  year: number;
+  singleDay: Date;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.populateDaysFromSingleDay(new Date());
+    this.singleDay = new Date();
+    this.populateDaysFromSingleDay(this.singleDay);
+  }
+
+  goToNextMonth = () => {
+    this.singleDay.setMonth(this.singleDay.getMonth() + 1);
+    this.populateDaysFromSingleDay(this.singleDay);
+  }
+
+  goToPreviousMonth = () => {
+    this.singleDay.setMonth(this.singleDay.getMonth() - 1);
+    this.populateDaysFromSingleDay(this.singleDay);
   }
 
   /**
    * Input: singleDay, which can be any Date
-   * Modifies: this.days, this.month
+   * Modifies: this.days, this.month, this.year
    * Effects: Populates this.days to be a list of Dates
    *  with the first date in the list being the last Sunday of the month before singleDay is in,
    *  or the first of the month singleDay is in if the first is a Sunday,
@@ -31,6 +44,8 @@ export class MonthGridComponent implements OnInit {
    *  or the last of the month singleDay is in if the last is a Saturday
    */
   populateDaysFromSingleDay = (singleDay: Date) => {
+    this.days = [];
+
     // Get first day of month singleDay is in
     const firstDayOfMonth: Date = new Date(singleDay.getFullYear(), singleDay.getMonth(), 1);
 
@@ -62,6 +77,7 @@ export class MonthGridComponent implements OnInit {
       this.days.push(dateToPush);
     }
     this.month = singleDay.getMonth();
+    this.year = singleDay.getFullYear();
   }
 
 }
