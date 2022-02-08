@@ -1,4 +1,4 @@
-import { Component, OnInit, Input , Output , EventEmitter} from '@angular/core'; 
+import { Component, OnInit, Input , Output , EventEmitter} from '@angular/core';
 import { MonthNames } from 'src/app/models/monthNames';
 
 @Component({
@@ -25,7 +25,7 @@ export class MonthTitleComponent implements OnInit {
     MonthNames.OCT,
     MonthNames.NOV,
     MonthNames.DEC
-  ]
+  ];
 
   constructor() { }
 
@@ -35,7 +35,7 @@ export class MonthTitleComponent implements OnInit {
   goToNextMonth = () => {
     this.next.emit();
   }
-   
+
   goToPreviousMonth = () => {
     this.previous.emit();
   }

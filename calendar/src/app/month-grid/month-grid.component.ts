@@ -55,9 +55,9 @@ export class MonthGridComponent implements OnInit {
     // etc.
     const daysToShowFromLastMonth: number = firstDayOfMonth.getDay();
 
-    let firstDayToShow: Date = new Date(firstDayOfMonth)
+    const firstDayToShow: Date = new Date(firstDayOfMonth);
     firstDayToShow.setDate(firstDayOfMonth.getDate() - daysToShowFromLastMonth);
-    
+
     // Get last day of month singleDay is in
     const lastDayOfMonth: Date = new Date(singleDay.getFullYear(), singleDay.getMonth() + 1, 0);
 
@@ -66,13 +66,13 @@ export class MonthGridComponent implements OnInit {
     // If lastDayOfMonth is a Saturday, show 0 days from next month
     const daysToShowFromNextMonth: number = 6 - lastDayOfMonth.getDay();
 
-    let lastDayToShow: Date = new Date (lastDayOfMonth);
+    const lastDayToShow: Date = new Date (lastDayOfMonth);
     lastDayToShow.setDate(lastDayOfMonth.getDate() + daysToShowFromNextMonth);
 
-    const numberOfDaysToShow: number = (lastDayToShow.getTime() - firstDayToShow.getTime()) / (1000*60*60*24) + 1;
+    const numberOfDaysToShow: number = (lastDayToShow.getTime() - firstDayToShow.getTime()) / (1000 * 60 * 60 * 24) + 1;
 
     for (let i = 0; i < numberOfDaysToShow; i++) {
-      let dateToPush = new Date(firstDayToShow);
+      const dateToPush = new Date(firstDayToShow);
       dateToPush.setDate(firstDayToShow.getDate() + i);
       this.days.push(dateToPush);
     }
