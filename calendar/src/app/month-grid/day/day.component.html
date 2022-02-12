@@ -1,4 +1,5 @@
 <div class="day-container">
     {{date}}
-    <app-event></app-event>
+    <div *ngFor="let task of tasks">{{task.name}}</div>
+    <div *ngFor="let event of events">{{event.name}}</div>
 </div>
