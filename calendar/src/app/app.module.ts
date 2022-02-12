@@ -10,6 +10,8 @@ import { EventComponent } from './month-grid/day/event/event.component';
 import { TaskComponent } from './month-grid/day/task/task.component';
 import { NoteComponent } from './month-grid/day/note/note.component';
 
+import { EventService } from 'src/app/services/event.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { NoteComponent } from './month-grid/day/note/note.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    EventService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

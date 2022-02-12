@@ -18,7 +18,7 @@ export class DayComponent implements OnInit {
   events: Event[];
   tasks: Task[];
 
-  constructor(eventService: EventService) { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
     this.date = this.day.getDate();
