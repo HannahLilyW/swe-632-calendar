@@ -16,6 +16,9 @@ export class MonthGridComponent implements OnInit {
   month: number;
   year: number;
   singleDay: Date;
+  taskShow: boolean = false;
+  eventShow: boolean = false;
+  noteShow: boolean = false;
 
   constructor() { }
 
@@ -80,4 +83,11 @@ export class MonthGridComponent implements OnInit {
     this.year = singleDay.getFullYear();
   }
 
+  showTaskModal = () => { this.taskShow = true; }
+  showEventModal = () => { this.eventShow = true; }
+  showNoteModal = () => { this.noteShow = true; }
+
+  hideTaskModal = () => { this.taskShow = false; }
+  hideEventModal = () => { this.eventShow = false; }
+  hideNoteModal = () => { this.noteShow = false; }
 }

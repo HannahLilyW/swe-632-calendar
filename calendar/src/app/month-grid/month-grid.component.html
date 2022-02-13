@@ -9,3 +9,11 @@
     <div>Saturday</div>
     <app-day *ngFor="let day of days" [day]='day'></app-day>
 </div>
+<button (click)="showTaskModal()">Add Task</button>
+<button (click)="showEventModal()">Add Event</button>
+<button (click)="showNoteModal()">Add Note</button>
+<app-modal (close)="hideTaskModal" *ngIf="taskShow">
+    
+</app-modal>
+<app-modal (close)="hideEventModal" *ngIf="eventShow"></app-modal>
+<app-modal (close)="hideNoteModal" *ngIf="noteShow"></app-modal>
