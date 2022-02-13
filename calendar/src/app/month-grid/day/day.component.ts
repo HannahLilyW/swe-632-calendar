@@ -17,12 +17,30 @@ export class DayComponent implements OnInit {
   
   events: Event[];
   tasks: Task[];
+  numOfEvents: number = 0;
+  numOfTasks: number = 0;
 
   constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
     this.date = this.day.getDate();
-    this.eventService.eventsSubject.subscribe(events => { this.events = events; });
-    this.eventService.tasksSubject.subscribe(tasks => { this.tasks = tasks; });
+    const startOfDay:Date = new Date (this.day.getFullYear() , this.day.getMonth(), this.day.getDate());
+    const endOfDay:Date = new Date (this.day.getFullYear() , this.day.getMonth(), this.day.getDate() , 23, 59, 59 );
+    this.eventService.eventsSubject.subscribe(events => { 
+      this.events = events.filter (
+        event => event.startDate.getTime() >= startOfDay.getTime() && 
+                 event.endDate.getTime() <=  endOfDay.getTime())
+             
+     this.numOfTasks = this.tasks.length;
+     
+   });
+    this.eventService.tasksSubject.subscribe(tasks => { 
+      
+      this.tasks = tasks.filter (
+         task => task.dueDate.getFullYear() === this.day.getFullYear() &&
+         task.dueDate.getMonth() === this.day.getMonth() &&
+         task.dueDate.getDate() === this.day.getDate())  
+      this.numOfTasks = this.tasks.length;  
+     });
   }
 }
