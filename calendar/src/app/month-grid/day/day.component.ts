@@ -14,7 +14,7 @@ export class DayComponent implements OnInit {
   @Input() day: Date;
 
   date: number;
-  
+  showDetail: boolean = false;
   events: Event[];
   tasks: Task[];
   numOfEvents: number = 0;
@@ -24,23 +24,28 @@ export class DayComponent implements OnInit {
 
   ngOnInit(): void {
     this.date = this.day.getDate();
-    const startOfDay:Date = new Date (this.day.getFullYear() , this.day.getMonth(), this.day.getDate());
-    const endOfDay:Date = new Date (this.day.getFullYear() , this.day.getMonth(), this.day.getDate() , 23, 59, 59 );
-    this.eventService.eventsSubject.subscribe(events => { 
+    const startOfDay: Date = new Date (this.day.getFullYear() , this.day.getMonth(), this.day.getDate());
+    const endOfDay: Date = new Date (this.day.getFullYear() , this.day.getMonth(), this.day.getDate() , 23, 59, 59 );
+    this.eventService.eventsSubject.subscribe(events => {
       this.events = events.filter (
-        event => event.startDate.getTime() >= startOfDay.getTime() && 
-                 event.endDate.getTime() <=  endOfDay.getTime())
-             
-     this.numOfTasks = this.tasks.length;
-     
+        event => event.startDate.getTime() >= startOfDay.getTime() &&
+                 event.endDate.getTime() <=  endOfDay.getTime());
+      this.numOfEvents = this.events.length;
    });
-    this.eventService.tasksSubject.subscribe(tasks => { 
-      
+
+    this.eventService.tasksSubject.subscribe(tasks => {
       this.tasks = tasks.filter (
          task => task.dueDate.getFullYear() === this.day.getFullYear() &&
          task.dueDate.getMonth() === this.day.getMonth() &&
-         task.dueDate.getDate() === this.day.getDate())  
-      this.numOfTasks = this.tasks.length;  
-     });
+         task.dueDate.getDate() === this.day.getDate());
+      this.numOfTasks = this.tasks.length; });
+  }
+
+  showDayDetail = () => {
+    this.showDetail = true;
+  };
+
+  hideDayDetail = () => {
+    this.showDetail = false;
   }
 }

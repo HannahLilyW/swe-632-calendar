@@ -1,7 +1,11 @@
-<div class="day-container">
+<div class="day-container" (click)="showDayDetail()">
     {{date}}
     <!-- <div *ngFor="let task of tasks">{{task.name}}</div>
     <div *ngFor="let event of events">{{event.name}}</div> -->
-    <div>{{ numOfEvents}} Events </div>
-    <div>{{ numOfTasks}} Tasks </div>
+    <div>{{numOfEvents}} Events </div>
+    <div>{{numOfTasks}} Tasks </div>
+    {{showDetail}}
+    <ng-template [ngIf]="showDetail">
+        <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]=tasks [events]=events [day]=day></app-day-detail>
+    </ng-template>
 </div>

@@ -11,6 +11,7 @@ import { TaskComponent } from './month-grid/day/task/task.component';
 import { NoteComponent } from './month-grid/day/note/note.component';
 
 import { EventService } from 'src/app/services/event.service';
+import { DayDetailComponent } from './month-grid/day/day-detail/day-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EventService } from 'src/app/services/event.service';
     DayComponent,
     EventComponent,
     TaskComponent,
-    NoteComponent
+    NoteComponent,
+    DayDetailComponent
   ],
   imports: [
     BrowserModule,

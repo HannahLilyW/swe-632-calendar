@@ -1,3 +1,12 @@
 .day-container {
     height: 100px;
 }
+
+.detail {
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.3);
+}
