@@ -44,10 +44,8 @@ export class EventModalComponent implements OnInit {
     if (this.event) {
       this.formGroup.controls.name.setValue(this.event.name);
       this.formGroup.controls.date.setValue(formatDate(this.event.startDate, 'yyyy-MM-dd', 'en'));
-      this.formGroup.controls.startTime.setValue(`${this.event.startDate.getHours()}:${(this.event.startDate.getMinutes() < 10 ? "0" : "") +
-      this.event.startDate.getMinutes()}`);
-      this.formGroup.controls.endTime.setValue(`${this.event.endDate.getHours()}:${(this.event.endDate.getMinutes() < 10 ? "0" : "") +
-      this.event.endDate.getMinutes()}`);
+      this.formGroup.controls.startTime.setValue(this.eventService.formatTime(this.event.startDate));
+      this.formGroup.controls.endTime.setValue(this.eventService.formatTime(this.event.endDate));
     }
   }
 

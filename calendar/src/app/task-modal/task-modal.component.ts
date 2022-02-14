@@ -33,8 +33,7 @@ export class TaskModalComponent implements OnInit {
     if (this.task) {
       this.formGroup.controls.name.setValue(this.task.name);
       this.formGroup.controls.dueDate.setValue(formatDate(this.task.dueDate, 'yyyy-MM-dd', 'en'));
-      this.formGroup.controls.dueTime.setValue(`${this.task.dueDate.getHours()}:${(this.task.dueDate.getMinutes() < 10 ? "0" : "") +
-      this.task.dueDate.getMinutes()}`);
+      this.formGroup.controls.dueTime.setValue(this.eventService.formatTime(this.task.dueDate));
     }
   }
 

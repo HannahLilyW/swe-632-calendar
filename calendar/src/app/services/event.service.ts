@@ -86,4 +86,9 @@ export class EventService {
       new Date('2022-02-08T11:00:00')
     ));
   }
+
+  formatTime = (inputDate: Date): string => {
+    return `${(inputDate.getHours() < 10 ? "0" : "") + inputDate.getHours()}:${(inputDate.getMinutes() < 10 ? "0" : "") +
+    inputDate.getMinutes()}`
+  }
 }
