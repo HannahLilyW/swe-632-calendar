@@ -155,6 +155,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Task", function() { return Task; });
 class Task {
     constructor(dueDate, name) {
+        this.uuid = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
         this.dueDate = dueDate;
         this.name = name;
     }
@@ -353,10 +354,8 @@ class EventModalComponent {
         if (this.event) {
             this.formGroup.controls.name.setValue(this.event.name);
             this.formGroup.controls.date.setValue(Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(this.event.startDate, 'yyyy-MM-dd', 'en'));
-            this.formGroup.controls.startTime.setValue(`${this.event.startDate.getHours()}:${(this.event.startDate.getMinutes() < 10 ? "0" : "") +
-                this.event.startDate.getMinutes()}`);
-            this.formGroup.controls.endTime.setValue(`${this.event.endDate.getHours()}:${(this.event.endDate.getMinutes() < 10 ? "0" : "") +
-                this.event.endDate.getMinutes()}`);
+            this.formGroup.controls.startTime.setValue(this.eventService.formatTime(this.event.startDate));
+            this.formGroup.controls.endTime.setValue(this.eventService.formatTime(this.event.endDate));
         }
     }
 }
@@ -914,6 +913,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Note", function() { return Note; });
 class Note {
     constructor(title, text, createDate = null, updateDate = null) {
+        this.uuid = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
         this.createDate = createDate || new Date();
         this.updateDate = updateDate || new Date();
         this.text = text;
@@ -1283,6 +1283,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Event", function() { return Event; });
 class Event {
     constructor(startDate, endDate, name) {
+        this.uuid = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
         this.startDate = startDate;
         this.endDate = endDate;
         this.name = name;
@@ -1325,13 +1326,14 @@ class NoteModalComponent {
         this.eventService = eventService;
         this.close = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.save = () => {
-            const note = new src_app_models_note__WEBPACK_IMPORTED_MODULE_2__["Note"](this.formGroup.controls.title.value, this.formGroup.controls.text.value, this.note.createDate, new Date());
             if (this.note) {
                 // edit
+                const note = new src_app_models_note__WEBPACK_IMPORTED_MODULE_2__["Note"](this.formGroup.controls.title.value, this.formGroup.controls.text.value, this.note.createDate, new Date());
                 this.eventService.updateNote(note, this.index);
             }
             else {
                 //create
+                const note = new src_app_models_note__WEBPACK_IMPORTED_MODULE_2__["Note"](this.formGroup.controls.title.value, this.formGroup.controls.text.value, new Date(), new Date());
                 this.eventService.addNote(note);
             }
             this.close.emit();
@@ -1467,6 +1469,10 @@ class EventService {
             this.tasks.push(new _models_task__WEBPACK_IMPORTED_MODULE_1__["Task"](new Date('2022-02-16T16:30:00'), 'SWE 632 HW1 Due'));
             this.notes.push(new _models_note__WEBPACK_IMPORTED_MODULE_2__["Note"]('grocery list', 'eggs, bread, butter', new Date('2022-02-06T10:00:00'), new Date('2022-02-08T11:00:00')));
         };
+        this.formatTime = (inputDate) => {
+            return `${(inputDate.getHours() < 10 ? "0" : "") + inputDate.getHours()}:${(inputDate.getMinutes() < 10 ? "0" : "") +
+                inputDate.getMinutes()}`;
+        };
         this.events = [];
         this.tasks = [];
         this.notes = [];
@@ -1544,8 +1550,7 @@ class TaskModalComponent {
         if (this.task) {
             this.formGroup.controls.name.setValue(this.task.name);
             this.formGroup.controls.dueDate.setValue(Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["formatDate"])(this.task.dueDate, 'yyyy-MM-dd', 'en'));
-            this.formGroup.controls.dueTime.setValue(`${this.task.dueDate.getHours()}:${(this.task.dueDate.getMinutes() < 10 ? "0" : "") +
-                this.task.dueDate.getMinutes()}`);
+            this.formGroup.controls.dueTime.setValue(this.eventService.formatTime(this.task.dueDate));
         }
     }
 }
