@@ -26,11 +26,22 @@ export class NoteModalComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.note) {
+      this.formGroup.controls.title.setValue(this.note.title);
+      this.formGroup.controls.text.setValue(this.note.text);
+    }
+  }
 
   save = () => {
-    const note: Note = new Note(this.formGroup.controls.title.value, this.formGroup.controls.text.value);
-    this.eventService.addNote(note);
+    const note: Note = new Note(this.formGroup.controls.title.value, this.formGroup.controls.text.value, this.note.createDate, new Date());
+    if (this.note) {
+      // edit
+      this.eventService.updateNote(note, this.index)
+    } else {
+      //create
+      this.eventService.addNote(note);
+    }
     this.close.emit();
   }
 

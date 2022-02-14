@@ -1,4 +1,4 @@
-<h1>Create Event</h1>
+<h1>{{event ? 'Edit' : 'Create'}} Event</h1>
 <form [formGroup]="formGroup">
     <div>
         <label for="inputName">Name</label> <input id="inputName" type="text" formControlName="name">

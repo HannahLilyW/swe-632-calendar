@@ -5,6 +5,7 @@
     <h4>Updated: {{note.updateDate | date:'short'}}</h4>
     <p [innerHTML]="note.text | newline"></p>
     <button (click)="showNoteModal(note)">Edit</button>
+    <button (click)="deleteNote(i)">Delete</button>
     <div class="modal-parent" *ngIf="noteShow">
         <app-modal (closeClick)="hideNoteModal()" *ngIf="noteShow">
             <app-note-modal (close)="hideNoteModal()" [note]="note" [index]="i"></app-note-modal>

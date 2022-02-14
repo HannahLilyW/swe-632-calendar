@@ -1,7 +1,8 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from 'src/app/models/task';
 import { EventService } from 'src/app/services/event.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-task-modal',
@@ -11,6 +12,9 @@ import { EventService } from 'src/app/services/event.service';
 export class TaskModalComponent implements OnInit {
 
   @Output() close: EventEmitter<void> = new EventEmitter();
+
+  @Input() task: Task;
+  @Input() index: number;
 
   formGroup: FormGroup
 
@@ -25,12 +29,25 @@ export class TaskModalComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.task) {
+      this.formGroup.controls.name.setValue(this.task.name);
+      this.formGroup.controls.dueDate.setValue(formatDate(this.task.dueDate, 'yyyy-MM-dd', 'en'));
+      this.formGroup.controls.dueTime.setValue(`${this.task.dueDate.getHours()}:${(this.task.dueDate.getMinutes() < 10 ? "0" : "") +
+      this.task.dueDate.getMinutes()}`);
+    }
+  }
 
   save = () => {
     const dueDate: Date = new Date(`${this.formGroup.controls.dueDate.value}T${this.formGroup.controls.dueTime.value}:00`);
     const task: Task = new Task(dueDate, this.formGroup.controls.name.value);
-    this.eventService.addTask(task);
+    if (this.task) {
+      // edit
+      this.eventService.updateTask(task, this.index);
+    } else {
+      //create
+      this.eventService.addTask(task);
+    }
     this.close.emit();
   }
 

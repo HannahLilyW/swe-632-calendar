@@ -2,7 +2,27 @@
     <div class="close" (click)="close($event)">X</div>
     <h2> {{day | date}} </h2>
     <h4>Events</h4>
-    <div *ngFor="let event of events"> {{event.name}} - {{event.startDate | date:'short'}} - {{event.endDate | date:'short'}} </div>
+    <div *ngFor="let event of events; let i = index">
+        <div>Name: {{event.name}}</div>
+        <div>Duration: {{event.startDate | date:'short'}} - {{event.endDate | date:'short'}}</div>
+        <button (click)="showEventModal(event)">Edit</button>
+        <button (click)="deleteEvent(i)">Delete</button>
+        <div class="modal-parent" *ngIf="eventShow">
+            <app-modal (closeClick)="hideEventModal()" *ngIf="eventShow">
+                <app-event-modal (close)="hideEventModal()" [event]="event" [index]="i"></app-event-modal>
+            </app-modal>
+        </div>
+    </div>
     <h4>Tasks</h4>
-    <div *ngFor="let task of tasks"> {{task.name}} - {{task.dueDate | date:'short'}} </div>
+    <div *ngFor="let task of tasks; let i = index">
+        <div>Name: {{task.name}}</div>
+        <div>Due Date: {{task.dueDate | date:'short'}}</div>
+        <button (click)="showTaskModal(task)">Edit</button>
+        <button (click)="deleteTask(i)">Delete</button>
+        <div class="modal-parent" *ngIf="taskShow">
+            <app-modal (closeClick)="hideTaskModal()" *ngIf="taskShow">
+                <app-task-modal (close)="hideTaskModal()" [task]="task" [index]="i"></app-task-modal>
+            </app-modal>
+        </div>
+    </div>
 </div>

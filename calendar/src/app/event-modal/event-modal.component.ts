@@ -1,7 +1,8 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { Event } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-event-modal',
@@ -11,6 +12,9 @@ import { EventService } from 'src/app/services/event.service';
 export class EventModalComponent implements OnInit {
 
   @Output() close: EventEmitter<void> = new EventEmitter();
+
+  @Input() event: Event;
+  @Input() index: number;
 
   formGroup: FormGroup
 
@@ -36,13 +40,28 @@ export class EventModalComponent implements OnInit {
   }
   
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.event) {
+      this.formGroup.controls.name.setValue(this.event.name);
+      this.formGroup.controls.date.setValue(formatDate(this.event.startDate, 'yyyy-MM-dd', 'en'));
+      this.formGroup.controls.startTime.setValue(`${this.event.startDate.getHours()}:${(this.event.startDate.getMinutes() < 10 ? "0" : "") +
+      this.event.startDate.getMinutes()}`);
+      this.formGroup.controls.endTime.setValue(`${this.event.endDate.getHours()}:${(this.event.endDate.getMinutes() < 10 ? "0" : "") +
+      this.event.endDate.getMinutes()}`);
+    }
+  }
 
   save = () => {
     const startDate: Date = new Date(`${this.formGroup.controls.date.value}T${this.formGroup.controls.startTime.value}:00`);
     const endDate: Date = new Date(`${this.formGroup.controls.date.value}T${this.formGroup.controls.endTime.value}:00`);
     const event: Event = new Event(startDate, endDate, this.formGroup.controls.name.value);
-    this.eventService.addEvent(event);
+    if (this.event) {
+      // edit
+      this.eventService.updateEvent(event, this.index)
+    } else {
+      // create
+      this.eventService.addEvent(event);
+    }
     this.close.emit();
   }
 

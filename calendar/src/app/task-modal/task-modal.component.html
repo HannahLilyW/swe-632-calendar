@@ -1,4 +1,4 @@
-<h1>Create Task</h1>
+<h1>{{task ? 'Edit' : 'Create'}} Task</h1>
 <form [formGroup]="formGroup">
     <div>
         <label for="inputName">Name</label> <input id="inputName" type="text" formControlName="name">

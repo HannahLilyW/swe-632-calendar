@@ -31,13 +31,43 @@ export class EventService {
     this.eventsSubject.next(this.events);
   }
 
+  updateEvent = (event: Event, index: number) => {
+    this.events[index] = event;
+    this.eventsSubject.next(this.events);
+  }
+
+  deleteEvent = (index: number) => {
+    this.events.splice(index, 1);
+    this.eventsSubject.next(this.events);
+  }
+
   addTask = (task: Task) => {
     this.tasks.push(task);
     this.tasksSubject.next(this.tasks);
   }
 
+  updateTask = (task: Task, index: number) => {
+    this.tasks[index] = task;
+    this.tasksSubject.next(this.tasks);
+  }
+
+  deleteTask = (index: number) => {
+    this.tasks.splice(index, 1);
+    this.tasksSubject.next(this.tasks);
+  }
+
   addNote = (note: Note) => {
     this.notes.push(note);
+    this.notesSubject.next(this.notes);
+  }
+
+  updateNote = (note: Note, index: number) => {
+    this.notes[index] = note;
+    this.notesSubject.next(this.notes);
+  }
+
+  deleteNote = (index: number) => {
+    this.notes.splice(index, 1);
     this.notesSubject.next(this.notes);
   }
 

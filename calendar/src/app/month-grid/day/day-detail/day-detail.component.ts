@@ -15,6 +15,10 @@ export class DayDetailComponent implements OnInit {
   @Input() day: Date;
   @Output() closeClick = new EventEmitter();
 
+  taskShow: boolean=false;
+  eventShow: boolean=false;
+
+
   constructor(private eventService: EventService) {}
 
   ngOnInit(): void {}
@@ -23,5 +27,13 @@ export class DayDetailComponent implements OnInit {
     event.stopPropagation();
     this.closeClick.emit();
   }
+
+  showTaskModal = () => { this.taskShow = true; }
+  hideTaskModal = () => { this.taskShow = false; }
+  showEventModal = () => { this.eventShow = true; }
+  hideEventModal = () => { this.eventShow = false; }
+
+  deleteTask = (i: number) => { this.eventService.deleteTask(i) };
+  deleteEvent = (i: number) => { this.eventService.deleteEvent(i) };
 
 }

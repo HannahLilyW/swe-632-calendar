@@ -22,4 +22,8 @@ export class NotesComponent implements OnInit {
   showNoteModal = () => { this.noteShow = true; }
   hideNoteModal = () => { this.noteShow = false; }
 
+  deleteNote = (i: number) => {
+    this.eventService.deleteNote(i);
+  }
+
 }

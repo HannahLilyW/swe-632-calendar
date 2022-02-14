@@ -1,4 +1,4 @@
-<h1>Create Note</h1>
+<h1>{{note ? 'Edit' : 'Create'}} Note</h1>
 <form [formGroup]="formGroup">
     <div>
         <label for="inputTitle">Title</label> <input id="inputTitle" type="text" formControlName="title">
