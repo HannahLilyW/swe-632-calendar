@@ -15,8 +15,8 @@ export class DayDetailComponent implements OnInit {
   @Input() day: Date;
   @Output() closeClick = new EventEmitter();
 
-  taskShow: boolean=false;
-  eventShow: boolean=false;
+  taskShow: Task = null;
+  eventShow: Event = null;
 
 
   constructor(private eventService: EventService) {}
@@ -28,12 +28,12 @@ export class DayDetailComponent implements OnInit {
     this.closeClick.emit();
   }
 
-  showTaskModal = () => { this.taskShow = true; }
-  hideTaskModal = () => { this.taskShow = false; }
-  showEventModal = () => { this.eventShow = true; }
-  hideEventModal = () => { this.eventShow = false; }
+  showTaskModal = (task: Task) => { this.taskShow = task; };
+  hideTaskModal = () => { this.taskShow = null; };
+  showEventModal = (event: Event) => { this.eventShow = event; };
+  hideEventModal = () => { this.eventShow = null; };
 
-  deleteTask = (i: number) => { this.eventService.deleteTask(i) };
-  deleteEvent = (i: number) => { this.eventService.deleteEvent(i) };
+  deleteTask = (task: Task) => { this.eventService.deleteTask(task); };
+  deleteEvent = (event: Event) => { this.eventService.deleteEvent(event); };
 
 }

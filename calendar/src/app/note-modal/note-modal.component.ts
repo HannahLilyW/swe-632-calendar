@@ -14,7 +14,7 @@ export class NoteModalComponent implements OnInit {
   @Input() note: Note;
   @Input() index: number;
 
-  formGroup: FormGroup
+  formGroup: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,9 +37,9 @@ export class NoteModalComponent implements OnInit {
     if (this.note) {
       // edit
       const note: Note = new Note(this.formGroup.controls.title.value, this.formGroup.controls.text.value, this.note.createDate, new Date());
-      this.eventService.updateNote(note, this.index)
+      this.eventService.updateNote(note);
     } else {
-      //create
+      // create
       const note: Note = new Note(this.formGroup.controls.title.value, this.formGroup.controls.text.value, new Date(), new Date());
       this.eventService.addNote(note);
     }

@@ -16,7 +16,7 @@ export class TaskModalComponent implements OnInit {
   @Input() task: Task;
   @Input() index: number;
 
-  formGroup: FormGroup
+  formGroup: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,7 +24,7 @@ export class TaskModalComponent implements OnInit {
   ) {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required]],
-      dueDate:[null, [Validators.required]],
+      dueDate: [null, [Validators.required]],
       dueTime: [null, [Validators.required]]
     });
   }
@@ -42,9 +42,9 @@ export class TaskModalComponent implements OnInit {
     const task: Task = new Task(dueDate, this.formGroup.controls.name.value);
     if (this.task) {
       // edit
-      this.eventService.updateTask(task, this.index);
+      this.eventService.updateTask(task);
     } else {
-      //create
+      // create
       this.eventService.addTask(task);
     }
     this.close.emit();

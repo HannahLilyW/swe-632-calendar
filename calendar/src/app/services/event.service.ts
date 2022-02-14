@@ -31,12 +31,14 @@ export class EventService {
     this.eventsSubject.next(this.events);
   }
 
-  updateEvent = (event: Event, index: number) => {
+  updateEvent = (event: Event) => {
+    const index = this.events.findIndex((e => e.uuid == event.uuid));
     this.events[index] = event;
     this.eventsSubject.next(this.events);
   }
 
-  deleteEvent = (index: number) => {
+  deleteEvent = (event: Event) => {
+    const index = this.events.findIndex((e => e.uuid == event.uuid));
     this.events.splice(index, 1);
     this.eventsSubject.next(this.events);
   }
@@ -46,12 +48,17 @@ export class EventService {
     this.tasksSubject.next(this.tasks);
   }
 
-  updateTask = (task: Task, index: number) => {
+  updateTask = (task: Task) => {
+    const index = this.tasks.findIndex((t => t.uuid == task.uuid));
     this.tasks[index] = task;
     this.tasksSubject.next(this.tasks);
   }
 
-  deleteTask = (index: number) => {
+  deleteTask = (task: Task) => {
+    console.log('tasks: ' + this.tasks);
+    console.log(task);
+    const index = this.tasks.findIndex((t => t.uuid == task.uuid));
+    console.log(index);
     this.tasks.splice(index, 1);
     this.tasksSubject.next(this.tasks);
   }
@@ -61,12 +68,14 @@ export class EventService {
     this.notesSubject.next(this.notes);
   }
 
-  updateNote = (note: Note, index: number) => {
+  updateNote = (note: Note) => {
+    const index = this.notes.findIndex((n => n.uuid === note.uuid));
     this.notes[index] = note;
     this.notesSubject.next(this.notes);
   }
 
-  deleteNote = (index: number) => {
+  deleteNote = (note: Note) => {
+    const index = this.notes.findIndex((t => t.uuid === note.uuid));
     this.notes.splice(index, 1);
     this.notesSubject.next(this.notes);
   }
@@ -88,7 +97,7 @@ export class EventService {
   }
 
   formatTime = (inputDate: Date): string => {
-    return `${(inputDate.getHours() < 10 ? "0" : "") + inputDate.getHours()}:${(inputDate.getMinutes() < 10 ? "0" : "") +
-    inputDate.getMinutes()}`
+    return `${(inputDate.getHours() < 10 ? '0' : '') + inputDate.getHours()}:${(inputDate.getMinutes() < 10 ? '0' : '') +
+    inputDate.getMinutes()}`;
   }
 }

@@ -14,11 +14,11 @@ export class DayComponent implements OnInit {
   @Input() day: Date;
 
   date: number;
-  showDetail: boolean = false;
+  showDetail = false;
   events: Event[];
   tasks: Task[];
-  numOfEvents: number = 0;
-  numOfTasks: number = 0;
+  numOfEvents = 0;
+  numOfTasks = 0;
 
   constructor(private eventService: EventService) { }
 
@@ -43,7 +43,7 @@ export class DayComponent implements OnInit {
 
   showDayDetail = () => {
     this.showDetail = true;
-  };
+  }
 
   hideDayDetail = () => {
     this.showDetail = false;

@@ -9,21 +9,21 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class NotesComponent implements OnInit {
   notes: Note[] = [];
-  noteShow: boolean = false;
+  noteShow: Note = null;
 
   constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
     this.eventService.notesSubject.subscribe(notes => {
       this.notes = notes;
-    })
+    });
   }
 
-  showNoteModal = () => { this.noteShow = true; }
-  hideNoteModal = () => { this.noteShow = false; }
+  showNoteModal = (note: Note) => { this.noteShow = note; };
+  hideNoteModal = () => { this.noteShow = null; };
 
-  deleteNote = (i: number) => {
-    this.eventService.deleteNote(i);
+  deleteNote = (note: Note) => {
+    this.eventService.deleteNote(note);
   }
 
 }

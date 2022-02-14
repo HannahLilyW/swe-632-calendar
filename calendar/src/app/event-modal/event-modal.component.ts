@@ -16,7 +16,7 @@ export class EventModalComponent implements OnInit {
   @Input() event: Event;
   @Input() index: number;
 
-  formGroup: FormGroup
+  formGroup: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,7 +24,7 @@ export class EventModalComponent implements OnInit {
   ) {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required]],
-      date:[null, [Validators.required]],
+      date: [null, [Validators.required]],
       startTime: [null, [Validators.required]],
       endTime: [null, [Validators.required]]
     }, {
@@ -34,11 +34,11 @@ export class EventModalComponent implements OnInit {
 
   validateStartTimeBeforeEndTime = () => (group: FormGroup): ValidationErrors | null => {
     if (group.controls.startTime.value > group.controls.endTime.value) {
-      return {'endTime': 'Start time must be before end time.'}
+      return {endTime: 'Start time must be before end time.'};
     }
     return null;
   }
-  
+
 
   ngOnInit(): void {
     if (this.event) {
@@ -55,7 +55,7 @@ export class EventModalComponent implements OnInit {
     const event: Event = new Event(startDate, endDate, this.formGroup.controls.name.value);
     if (this.event) {
       // edit
-      this.eventService.updateEvent(event, this.index)
+      this.eventService.updateEvent(event);
     } else {
       // create
       this.eventService.addEvent(event);
