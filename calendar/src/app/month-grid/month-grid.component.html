@@ -12,8 +12,18 @@
 <button (click)="showTaskModal()">Add Task</button>
 <button (click)="showEventModal()">Add Event</button>
 <button (click)="showNoteModal()">Add Note</button>
-<app-modal (close)="hideTaskModal" *ngIf="taskShow">
-    
-</app-modal>
-<app-modal (close)="hideEventModal" *ngIf="eventShow"></app-modal>
-<app-modal (close)="hideNoteModal" *ngIf="noteShow"></app-modal>
+<div class="modal-parent" *ngIf="taskShow">
+    <app-modal (closeClick)="hideTaskModal()">
+        <app-task-modal (close)="hideTaskModal()"></app-task-modal>
+    </app-modal>
+</div>
+<div class="modal-parent" *ngIf="eventShow">
+    <app-modal (closeClick)="hideEventModal()" *ngIf="eventShow">
+        <app-event-modal (close)="hideEventModal()"></app-event-modal>
+    </app-modal>
+</div>
+<div class="modal-parent" *ngIf="noteShow">
+    <app-modal (closeClick)="hideNoteModal()" *ngIf="noteShow">
+        <app-note-modal (close)="hideNoteModal()"></app-note-modal>
+    </app-modal>
+</div>

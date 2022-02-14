@@ -1,8 +1,8 @@
 <div class="modal-container">
     <div class="close" (click)="close($event)">X</div>
-    <h2> {{day}} </h2>
+    <h2> {{day | date}} </h2>
     <h4>Events</h4>
-    <div *ngFor="let event of events"> {{event.name}} - {{event.startDate}} - {{event.endDate}} </div>
+    <div *ngFor="let event of events"> {{event.name}} - {{event.startDate | date:'short'}} - {{event.endDate | date:'short'}} </div>
     <h4>Tasks</h4>
-    <div *ngFor="let task of tasks"> {{task.name}} - {{task.dueDate}} </div>
+    <div *ngFor="let task of tasks"> {{task.name}} - {{task.dueDate | date:'short'}} </div>
 </div>

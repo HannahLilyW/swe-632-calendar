@@ -1,0 +1,13 @@
+<h2>Notes</h2>
+<div class="note-container" *ngFor="let note of notes; let i = index">
+    <h3>{{note.title}}</h3>
+    <h4>Created: {{note.createDate | date:'short'}}</h4>
+    <h4>Updated: {{note.updateDate | date:'short'}}</h4>
+    <p [innerHTML]="note.text | newline"></p>
+    <button (click)="showNoteModal(note)">Edit</button>
+    <div class="modal-parent" *ngIf="noteShow">
+        <app-modal (closeClick)="hideNoteModal()" *ngIf="noteShow">
+            <app-note-modal (close)="hideNoteModal()" [note]="note" [index]="i"></app-note-modal>
+        </app-modal>
+    </div>
+</div>

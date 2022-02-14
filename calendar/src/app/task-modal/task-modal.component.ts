@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Task } from 'src/app/models/task';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-task-modal',
@@ -8,16 +10,28 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class TaskModalComponent implements OnInit {
 
+  @Output() close: EventEmitter<void> = new EventEmitter();
+
   formGroup: FormGroup
 
-  constructor(private formBuilder:FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private eventService: EventService
+  ) {
     this.formGroup = this.formBuilder.group({
-      name: [''],
-      dueDate:[null],
-      dueTime: [null]
+      name: ['', [Validators.required]],
+      dueDate:[null, [Validators.required]],
+      dueTime: [null, [Validators.required]]
     });
   }
 
   ngOnInit(): void {}
+
+  save = () => {
+    const dueDate: Date = new Date(`${this.formGroup.controls.dueDate.value}T${this.formGroup.controls.dueTime.value}:00`);
+    const task: Task = new Task(dueDate, this.formGroup.controls.name.value);
+    this.eventService.addTask(task);
+    this.close.emit();
+  }
 
 }

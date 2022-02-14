@@ -1,6 +1,14 @@
 <h1>Create Task</h1>
-<!-- <form [formGroup]="formGroup">
-    <label for="inputName">Name</label> <input id="inputName" type="text">
-    <label for="inputDate">Due Date</label> <input id="inputDate" type="date">
-    <label for="inputDate">Due Time</label> <input id="inputTime" type="time">
-</form> -->
+<form [formGroup]="formGroup">
+    <div>
+        <label for="inputName">Name</label> <input id="inputName" type="text" formControlName="name">
+    </div>
+    <div>
+        <label for="inputDate">Due Date</label> <input id="inputDate" type="date" formControlName="dueDate">
+    </div>
+    <div>
+        <label for="inputTime">Due Time</label> <input id="inputTime" type="time" formControlName="dueTime">
+    </div>
+    <button (click)="save()" [disabled]="!formGroup.valid">Save</button>
+    <div class="errors" *ngIf="!formGroup.valid">There is an error! It's YOUR fault! Unable to save.</div>
+</form>

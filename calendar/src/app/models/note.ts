@@ -3,7 +3,7 @@ export class Note{
     updateDate: Date;
     text: string;
     title: string;
-    constructor(createDate: Date = null, updateDate: Date = null, text: string, title: string ){
+    constructor(title: string, text: string, createDate: Date=null, updateDate: Date=null){
         this.createDate = createDate || new Date();
         this.updateDate = updateDate || new Date();
         this.text = text;

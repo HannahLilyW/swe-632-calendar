@@ -1,1 +1,17 @@
-<p>event-modal works!</p>
+<h1>Create Event</h1>
+<form [formGroup]="formGroup">
+    <div>
+        <label for="inputName">Name</label> <input id="inputName" type="text" formControlName="name">
+    </div>
+    <div>
+        <label for="inputDate">Date</label> <input id="inputDate" type="date" formControlName="date">
+    </div>
+    <div>
+        <label for="inputStartTime">Start Time</label> <input id="inputStartTime" type="time" formControlName="startTime">
+    </div>
+    <div>
+        <label for="inputEndTime">End Time</label> <input id="inputEndTime" type="time" formControlName="endTime">
+    </div>
+    <button (click)="save()" [disabled]="!formGroup.valid">Save</button>
+    <div class="errors" *ngIf="!formGroup.valid">There is an error! It's YOUR fault! Unable to save.</div>
+</form>

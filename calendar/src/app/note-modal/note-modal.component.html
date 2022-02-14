@@ -1,1 +1,11 @@
-<p>note-modal works!</p>
+<h1>Create Note</h1>
+<form [formGroup]="formGroup">
+    <div>
+        <label for="inputTitle">Title</label> <input id="inputTitle" type="text" formControlName="title">
+    </div>
+    <div>
+        <label for="inputText">Text</label> <textarea id="inputText" type="text" formControlName="text"></textarea>
+    </div>
+    <button (click)="save()" [disabled]="!formGroup.valid">Save</button>
+    <div class="errors" *ngIf="!formGroup.valid">There is an error! It's YOUR fault! Unable to save.</div>
+</form>

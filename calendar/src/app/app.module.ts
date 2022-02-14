@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,9 @@ import { ModalComponent } from './shared/modal/modal.component';
 import { TaskModalComponent } from './task-modal/task-modal.component';
 import { EventModalComponent } from './event-modal/event-modal.component';
 import { NoteModalComponent } from './note-modal/note-modal.component';
+import { NotesComponent } from './notes/notes.component';
+
+import { NewlinePipe } from 'src/app/pipes/newline.pipe';
 
 @NgModule({
   declarations: [
@@ -30,15 +34,19 @@ import { NoteModalComponent } from './note-modal/note-modal.component';
     ModalComponent,
     TaskModalComponent,
     EventModalComponent,
-    NoteModalComponent
+    NoteModalComponent,
+    NotesComponent,
+    NewlinePipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     EventService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [NewlinePipe]
 })
 export class AppModule { }
