@@ -34,12 +34,13 @@ export class NoteModalComponent implements OnInit {
   }
 
   save = () => {
-    const note: Note = new Note(this.formGroup.controls.title.value, this.formGroup.controls.text.value, this.note.createDate, new Date());
     if (this.note) {
       // edit
+      const note: Note = new Note(this.formGroup.controls.title.value, this.formGroup.controls.text.value, this.note.createDate, new Date());
       this.eventService.updateNote(note, this.index)
     } else {
       //create
+      const note: Note = new Note(this.formGroup.controls.title.value, this.formGroup.controls.text.value, new Date(), new Date());
       this.eventService.addNote(note);
     }
     this.close.emit();
