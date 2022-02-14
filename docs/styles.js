@@ -44,7 +44,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "/* You can add global styles to this file, and also import other style files */\n* {\n  font-family: \"Comic Sans MS\";\n}", "",{"version":3,"sources":["webpack://src/styles.scss"],"names":[],"mappings":"AAAA,8EAAA;AAEA;EACI,4BAAA;AAAJ","sourcesContent":["/* You can add global styles to this file, and also import other style files */\r\n\r\n* {\r\n    font-family: 'Comic Sans MS';\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "/* You can add global styles to this file, and also import other style files */\n* {\n  font-family: \"Comic Sans MS\";\n}\n.modal-parent {\n  height: 100vh;\n  left: 0;\n  position: fixed;\n  top: 0;\n  width: 100vw;\n  background: rgba(0, 0, 0, 0.3);\n}\n.errors {\n  color: red;\n  background-color: black;\n}", "",{"version":3,"sources":["webpack://src/styles.scss"],"names":[],"mappings":"AAAA,8EAAA;AAEA;EACI,4BAAA;AAAJ;AAGA;EACI,aAAA;EACA,OAAA;EACA,eAAA;EACA,MAAA;EACA,YAAA;EACA,8BAAA;AAAJ;AAGA;EACI,UAAA;EACA,uBAAA;AAAJ","sourcesContent":["/* You can add global styles to this file, and also import other style files */\r\n\r\n* {\r\n    font-family: 'Comic Sans MS';\r\n}\r\n\r\n.modal-parent {\r\n    height: 100vh;\r\n    left: 0;\r\n    position: fixed;\r\n    top: 0;\r\n    width: 100vw;\r\n    background: rgba(0, 0, 0, 0.3);\r\n}\r\n\r\n.errors {\r\n    color: red;\r\n    background-color: black;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
