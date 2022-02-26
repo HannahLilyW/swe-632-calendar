@@ -1,10 +1,17 @@
 .modal-container {
     background-color: rgb(255, 255, 255);
-    height: 75%;
-    margin: 12.5%;
+    margin-left: 5vw;
+    margin-right: 5vw;
     position: fixed;
-    top: 25%;
-    transform: translateY(-50%);
-    width: 75%;
+    top: 5vh;
+    width: calc(100% - 10vw);
+    padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .modal-container {
+        margin: 0;
+        width: 100%;
+    }
 }
 

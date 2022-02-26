@@ -1,19 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 * {
-    font-family: 'Comic Sans MS';
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .modal-parent {
-    height: 100vh;
+    height: 100%;
     left: 0;
     position: fixed;
     top: 0;
-    width: 100vw;
+    width: 100%;
     background: rgba(0, 0, 0, 0.3);
 }
 
 .errors {
     color: red;
-    background-color: black;
+    margin: 4px;
+}
+
+input, label, textarea {
+    margin: 4px;
+}
+
+.red {
+    color: red;
 }

@@ -1,14 +1,37 @@
 <h1>{{task ? 'Edit' : 'Create'}} Task</h1>
 <form [formGroup]="formGroup">
     <div>
-        <label for="inputName">Name</label> <input id="inputName" type="text" formControlName="name">
+        <div>
+            <label for="inputName">Name <span class="red">* (Required)</span></label>
+        </div>
+        <div>
+            <input id="inputName" type="text" formControlName="name">
+        </div>
+        <div class="errors" *ngIf="formGroup.controls.name.touched && formGroup.controls.name.errors && formGroup.controls.name.errors.required">
+            Please enter a name.
+        </div>
     </div>
     <div>
-        <label for="inputDate">Due Date</label> <input id="inputDate" type="date" formControlName="dueDate">
+        <div>
+            <label for="inputDate">Due Date <span class="red">* (Required)</span></label>
+        </div>
+        <div>
+            <input id="inputDate" type="date" formControlName="dueDate">
+        </div>
+        <div class="errors" *ngIf="formGroup.controls.dueDate.touched && formGroup.controls.dueDate.errors && formGroup.controls.dueDate.errors.required">
+            Please enter a valid date.
+        </div>
     </div>
     <div>
-        <label for="inputTime">Due Time</label> <input id="inputTime" type="time" formControlName="dueTime">
+        <div>
+            <label for="inputTime">Due Time <span class="red">* (Required)</span></label>
+        </div>
+        <div>
+            <input id="inputTime" type="time" formControlName="dueTime">
+        </div>
+        <div class="errors" *ngIf="formGroup.controls.dueTime.touched && formGroup.controls.dueTime.errors && formGroup.controls.dueTime.errors.required">
+            Please enter a valid time.
+        </div>
     </div>
     <button (click)="save()" [disabled]="!formGroup.valid">Save</button>
-    <div class="errors" *ngIf="!formGroup.valid">There is an error! It's YOUR fault! Unable to save.</div>
 </form>

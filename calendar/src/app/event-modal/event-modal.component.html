@@ -1,17 +1,51 @@
 <h1>{{event ? 'Edit' : 'Create'}} Event</h1>
 <form [formGroup]="formGroup">
     <div>
-        <label for="inputName">Name</label> <input id="inputName" type="text" formControlName="name">
+        <div>
+            <label for="inputName">Name <span class="red">* (Required)</span></label>
+        </div>
+        <div>
+            <input id="inputName" type="text" formControlName="name">
+        </div>
+        <div class="errors" *ngIf="formGroup.controls.name.touched && formGroup.controls.name.errors && formGroup.controls.name.errors.required">
+            Please enter a name.
+        </div>
     </div>
     <div>
-        <label for="inputDate">Date</label> <input id="inputDate" type="date" formControlName="date">
+        <div>
+            <label for="inputDate">Date <span class="red">* (Required)</span></label>
+        </div>
+        <div>
+            <input id="inputDate" type="date" formControlName="date">
+        </div>
+        <div class="errors" *ngIf="formGroup.controls.date.touched && formGroup.controls.date.errors && formGroup.controls.date.errors.required">
+            Please enter a valid date.
+        </div>
     </div>
-    <div>
-        <label for="inputStartTime">Start Time</label> <input id="inputStartTime" type="time" formControlName="startTime">
-    </div>
-    <div>
-        <label for="inputEndTime">End Time</label> <input id="inputEndTime" type="time" formControlName="endTime">
+    <div class="start-end-time-container">
+        <div>
+            <div>
+                <label for="inputStartTime">Start Time <span class="red">* (Required)</span></label>
+            </div>
+            <div>
+                <input id="inputStartTime" type="time" formControlName="startTime">
+            </div>
+            <div class="errors" *ngIf="formGroup.controls.startTime.touched && formGroup.controls.startTime.errors && formGroup.controls.startTime.errors.required">
+                Please enter a valid start time.
+            </div>
+        </div>
+        <div> - </div>
+        <div>
+            <div>
+                <label for="inputEndTime">End Time <span class="red">* (Required)</span></label>
+            </div>
+            <div>
+                <input id="inputEndTime" type="time" formControlName="endTime">
+            </div>
+            <div class="errors" *ngIf="formGroup.controls.endTime.touched && formGroup.controls.endTime.errors && formGroup.controls.endTime.errors.required">
+                Please enter a valid end time.
+            </div>
+        </div>
     </div>
     <button (click)="save()" [disabled]="!formGroup.valid">Save</button>
-    <div class="errors" *ngIf="!formGroup.valid">There is an error! It's YOUR fault! Unable to save.</div>
 </form>

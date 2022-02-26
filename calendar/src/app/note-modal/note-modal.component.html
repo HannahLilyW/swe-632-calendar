@@ -1,11 +1,26 @@
 <h1>{{note ? 'Edit' : 'Create'}} Note</h1>
 <form [formGroup]="formGroup">
     <div>
-        <label for="inputTitle">Title</label> <input id="inputTitle" type="text" formControlName="title">
+        <div>
+            <label for="inputTitle">Title <span class="red">* (Required)</span></label>
+        </div>
+        <div>
+            <input id="inputTitle" type="text" formControlName="title">
+        </div>
+        <div class="errors" *ngIf="formGroup.controls.title.touched && formGroup.controls.title.errors && formGroup.controls.title.errors.required">
+            Please enter a title.
+        </div>
     </div>
     <div>
-        <label for="inputText">Text</label> <textarea id="inputText" type="text" formControlName="text"></textarea>
+        <div>
+            <label for="inputText">Text <span class="red">* (Required)</span></label>
+        </div>
+        <div>
+            <textarea id="inputText" type="text" formControlName="text"></textarea>
+        </div>
+        <div class="errors" *ngIf="formGroup.controls.text.touched && formGroup.controls.text.errors && formGroup.controls.text.errors.required">
+            Please enter some text.
+        </div>
     </div>
     <button (click)="save()" [disabled]="!formGroup.valid">Save</button>
-    <div class="errors" *ngIf="!formGroup.valid">There is an error! It's YOUR fault! Unable to save.</div>
 </form>
