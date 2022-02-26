@@ -7,9 +7,6 @@ import { AppComponent } from './app.component';
 import { MonthGridComponent } from './month-grid/month-grid.component';
 import { MonthTitleComponent } from './month-grid/month-title/month-title.component';
 import { DayComponent } from './month-grid/day/day.component';
-import { EventComponent } from './month-grid/day/event/event.component';
-import { TaskComponent } from './month-grid/day/task/task.component';
-import { NoteComponent } from './month-grid/day/note/note.component';
 
 import { EventService } from 'src/app/services/event.service';
 import { DayDetailComponent } from './month-grid/day/day-detail/day-detail.component';
@@ -27,9 +24,6 @@ import { NewlinePipe } from 'src/app/pipes/newline.pipe';
     MonthGridComponent,
     MonthTitleComponent,
     DayComponent,
-    EventComponent,
-    TaskComponent,
-    NoteComponent,
     DayDetailComponent,
     ModalComponent,
     TaskModalComponent,
