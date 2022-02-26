@@ -12,13 +12,15 @@ import { EventService } from 'src/app/services/event.service';
 export class DayComponent implements OnInit {
 
   @Input() day: Date;
+  @Input() month: number;
 
   date: number;
-  showDetail = false;
+  showDetail:boolean = false;
   events: Event[];
   tasks: Task[];
-  numOfEvents = 0;
-  numOfTasks = 0;
+  numOfEvents:number = 0;
+  numOfTasks:number = 0;
+  isDayInCurrentMonth: boolean = true;
 
   constructor(private eventService: EventService) { }
 
@@ -47,5 +49,9 @@ export class DayComponent implements OnInit {
 
   hideDayDetail = () => {
     this.showDetail = false;
+  }
+
+  checkIfDayIsInCurrentMonth = () => {
+    return this.day.getMonth() === this.month;
   }
 }

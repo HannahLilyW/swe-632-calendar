@@ -1,7 +1,7 @@
-<div class="day-container" (click)="showDayDetail()">
+<div class="day-container" [ngClass]="{'other-month': this.day.getMonth() !== this.month}" (click)="showDayDetail()">
     {{date}}
-    <div>{{numOfEvents}} Events </div>
-    <div>{{numOfTasks}} Tasks </div>
+    <div *ngIf="numOfEvents">{{numOfEvents}} Event{{ numOfEvents >1 ? 's' : '' }} </div>
+    <div *ngIf="numOfTasks">{{numOfTasks}} Task{{ numOfTasks >1 ? 's' : '' }}  </div>
     <ng-template [ngIf]="showDetail">
         <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]=tasks [events]=events [day]=day></app-day-detail>
     </ng-template>

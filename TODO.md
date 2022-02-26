@@ -1,10 +1,10 @@
 # Deliverables for HW3:
-1. Have margin between edit and delete buttons
-2. only show events + tasks if > 0
-3. error recovery in forms
+1. Have margin between edit and delete buttons (DONE)
+2. only show events + tasks if > 0 (DONE)
+3. error recovery in forms (DONE)
 4. cursor pointer in correct places
-5. borders around days
-6. dates from previous and next months should look different
+5. borders around days (DONE)
+6. dates from previous and next months should look different (DONE)
 7. error recovery in forms (duplicate)
 8. edit broken (done)
 9. events spanning multiple days (won't fix)

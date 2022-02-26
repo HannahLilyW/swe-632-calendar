@@ -7,7 +7,7 @@
     <div>Thursday</div>
     <div>Friday</div>
     <div>Saturday</div>
-    <app-day *ngFor="let day of days" [day]='day'></app-day>
+    <app-day *ngFor="let day of days" [day]='day' [month]='month'></app-day>
 </div>
 <button (click)="showTaskModal()">Add Task</button>
 <button (click)="showEventModal()">Add Event</button>
