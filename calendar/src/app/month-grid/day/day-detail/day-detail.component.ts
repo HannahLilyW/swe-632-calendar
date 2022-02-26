@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../../models/task';
 import { Event } from '../../../models/event';
 import { EventService } from '../../../services/event.service';
+import { ToastService } from '../../../services/toast.service';
+import { ToastType } from '../../../models/toast';
 
 @Component({
   selector: 'app-day-detail',
@@ -19,7 +21,10 @@ export class DayDetailComponent implements OnInit {
   eventShow: Event = null;
 
 
-  constructor(private eventService: EventService) {}
+  constructor(
+    private eventService: EventService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -33,7 +38,13 @@ export class DayDetailComponent implements OnInit {
   showEventModal = (event: Event) => { this.eventShow = event; };
   hideEventModal = () => { this.eventShow = null; };
 
-  deleteTask = (task: Task) => { this.eventService.deleteTask(task); };
-  deleteEvent = (event: Event) => { this.eventService.deleteEvent(event); };
+  deleteTask = (task: Task) => {
+    this.eventService.deleteTask(task);
+    this.toastService.addToast(ToastType.success, 'Task was deleted successfully!', 5)
+  };
+  deleteEvent = (event: Event) => {
+    this.eventService.deleteEvent(event);
+    this.toastService.addToast(ToastType.success, 'Event was deleted successfully!', 5)
+  };
 
 }

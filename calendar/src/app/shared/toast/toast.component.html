@@ -1,0 +1,11 @@
+<div class="toaster" >
+    <div class="toast" *ngFor="let toast of toasts" [ngClass]="{
+        'success': toast.type === ToastType.success,
+        'error': toast.type === ToastType.error,
+        'info': toast.type === ToastType.info}">
+        <div class="text">
+            {{toast.text}}
+        </div>
+        <button class="close" (click)="close(toast)">Dismiss</button>
+    </div>
+</div>

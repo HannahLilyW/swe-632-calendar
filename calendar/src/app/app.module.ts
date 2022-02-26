@@ -9,6 +9,7 @@ import { MonthTitleComponent } from './month-grid/month-title/month-title.compon
 import { DayComponent } from './month-grid/day/day.component';
 
 import { EventService } from 'src/app/services/event.service';
+import { ToastService } from 'src/app/services/toast.service';
 import { DayDetailComponent } from './month-grid/day/day-detail/day-detail.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { TaskModalComponent } from './task-modal/task-modal.component';
@@ -17,6 +18,7 @@ import { NoteModalComponent } from './note-modal/note-modal.component';
 import { NotesComponent } from './notes/notes.component';
 
 import { NewlinePipe } from 'src/app/pipes/newline.pipe';
+import { ToastComponent } from './shared/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { NewlinePipe } from 'src/app/pipes/newline.pipe';
     EventModalComponent,
     NoteModalComponent,
     NotesComponent,
-    NewlinePipe
+    NewlinePipe,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { NewlinePipe } from 'src/app/pipes/newline.pipe';
     ReactiveFormsModule
   ],
   providers: [
-    EventService
+    EventService,
+    ToastService
   ],
   bootstrap: [AppComponent],
   exports: [NewlinePipe]

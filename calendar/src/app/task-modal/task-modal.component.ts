@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from 'src/app/models/task';
 import { EventService } from 'src/app/services/event.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { ToastType } from 'src/app/models/toast';
 import { formatDate } from '@angular/common';
 
 @Component({
@@ -20,7 +22,8 @@ export class TaskModalComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private eventService: EventService
+    private eventService: EventService,
+    private toastService: ToastService
   ) {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -44,10 +47,12 @@ export class TaskModalComponent implements OnInit {
       this.task.dueDate = dueDate;
       this.task.name = this.formGroup.controls.name.value;
       this.eventService.updateTask(this.task);
+      this.toastService.addToast(ToastType.success, 'Event was edited successfully!', 5);
     } else {
       // create
       const task: Task = new Task(dueDate, this.formGroup.controls.name.value);
       this.eventService.addTask(task);
+      this.toastService.addToast(ToastType.success, 'Event was created successfully!', 5);
     }
     this.close.emit();
   }

@@ -2,7 +2,10 @@
     {{date}}
     <div *ngIf="numOfEvents">{{numOfEvents}} Event{{ numOfEvents >1 ? 's' : '' }} </div>
     <div *ngIf="numOfTasks">{{numOfTasks}} Task{{ numOfTasks >1 ? 's' : '' }}  </div>
-    <ng-template [ngIf]="showDetail">
-        <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]=tasks [events]=events [day]=day></app-day-detail>
-    </ng-template>
+    <div class="modal-parent" *ngIf="showDetail">
+        <app-modal (closeClick)="hideDayDetail()">
+            <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]=tasks [events]=events [day]=day>
+            </app-day-detail>
+        </app-modal>
+    </div>
 </div>

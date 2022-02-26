@@ -11,6 +11,7 @@
     top: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
+    cursor: auto;
 }
 
 .errors {
@@ -22,6 +23,15 @@ input, label, textarea, button {
     margin: 4px;
 }
 
+h4 {
+    margin: 0;
+}
+
 .red {
     color: red;
 }
+
+button {
+    cursor: pointer;
+}
+

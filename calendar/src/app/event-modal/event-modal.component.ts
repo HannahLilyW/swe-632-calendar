@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/f
 import { Event } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
 import { formatDate } from '@angular/common';
+import { ToastService } from 'src/app/services/toast.service';
+import { ToastType } from 'src/app/models/toast';
 
 @Component({
   selector: 'app-event-modal',
@@ -20,7 +22,8 @@ export class EventModalComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private eventService: EventService
+    private eventService: EventService,
+    private toastService: ToastService
   ) {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -58,10 +61,12 @@ export class EventModalComponent implements OnInit {
       this.event.endDate = endDate;
       this.event.name = this.formGroup.controls.name.value;
       this.eventService.updateEvent(this.event);
+      this.toastService.addToast(ToastType.success, 'Event was edited successfully!', 5)
     } else {
       // create
       const event: Event = new Event(startDate, endDate, this.formGroup.controls.name.value);
       this.eventService.addEvent(event);
+      this.toastService.addToast(ToastType.success, 'Event was created successfully!', 5)
     }
     this.close.emit();
   }

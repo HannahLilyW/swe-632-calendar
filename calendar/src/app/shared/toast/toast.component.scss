@@ -1,0 +1,32 @@
+.toaster {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 10vw);
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.toast {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px;
+    margin: 4px;
+    box-shadow: 0px 0px 10px gray;
+
+    &.success {
+        background-color: green;
+    }
+
+    &.error {
+        background-color: red;
+    }
+
+    &.info {
+        background-color: goldenrod;
+    }
+}
