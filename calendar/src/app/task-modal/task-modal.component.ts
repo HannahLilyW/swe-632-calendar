@@ -39,12 +39,14 @@ export class TaskModalComponent implements OnInit {
 
   save = () => {
     const dueDate: Date = new Date(`${this.formGroup.controls.dueDate.value}T${this.formGroup.controls.dueTime.value}:00`);
-    const task: Task = new Task(dueDate, this.formGroup.controls.name.value);
     if (this.task) {
       // edit
-      this.eventService.updateTask(task);
+      this.task.dueDate = dueDate;
+      this.task.name = this.formGroup.controls.name.value;
+      this.eventService.updateTask(this.task);
     } else {
       // create
+      const task: Task = new Task(dueDate, this.formGroup.controls.name.value);
       this.eventService.addTask(task);
     }
     this.close.emit();

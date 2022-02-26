@@ -52,12 +52,15 @@ export class EventModalComponent implements OnInit {
   save = () => {
     const startDate: Date = new Date(`${this.formGroup.controls.date.value}T${this.formGroup.controls.startTime.value}:00`);
     const endDate: Date = new Date(`${this.formGroup.controls.date.value}T${this.formGroup.controls.endTime.value}:00`);
-    const event: Event = new Event(startDate, endDate, this.formGroup.controls.name.value);
     if (this.event) {
       // edit
-      this.eventService.updateEvent(event);
+      this.event.startDate = startDate;
+      this.event.endDate = endDate;
+      this.event.name = this.formGroup.controls.name.value;
+      this.eventService.updateEvent(this.event);
     } else {
       // create
+      const event: Event = new Event(startDate, endDate, this.formGroup.controls.name.value);
       this.eventService.addEvent(event);
     }
     this.close.emit();

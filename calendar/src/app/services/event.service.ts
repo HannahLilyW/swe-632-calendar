@@ -49,16 +49,13 @@ export class EventService {
   }
 
   updateTask = (task: Task) => {
-    const index = this.tasks.findIndex((t => t.uuid == task.uuid));
+    const index = this.tasks.findIndex((t => t.uuid === task.uuid));
     this.tasks[index] = task;
     this.tasksSubject.next(this.tasks);
   }
 
   deleteTask = (task: Task) => {
-    console.log('tasks: ' + this.tasks);
-    console.log(task);
-    const index = this.tasks.findIndex((t => t.uuid == task.uuid));
-    console.log(index);
+    const index = this.tasks.findIndex((t => t.uuid === task.uuid));
     this.tasks.splice(index, 1);
     this.tasksSubject.next(this.tasks);
   }
