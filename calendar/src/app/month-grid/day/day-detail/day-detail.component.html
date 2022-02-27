@@ -7,7 +7,11 @@
             <button (click)="showEventModal(event)">✎ Edit</button>
         </div>
         <div>Duration: {{event.startDate | date:'short'}} - {{event.endDate | date:'short'}}</div>
-        <button (click)="deleteEvent(event)">🗑️ Delete</button>
+        <button *ngIf="deleteEventConfirm !== event" (click)="deleteEventConfirm = event">🗑️ Delete</button>
+        <div class="delete-confirm" *ngIf="deleteEventConfirm === event">Are you sure?
+            <button (click)="deleteEvent(event)">Yes, Delete</button>
+            <button (click)="deleteEventConfirm = null">No, Cancel</button>
+        </div>
         <div class="modal-parent" *ngIf="eventShow === event">
             <app-modal (closeClick)="hideEventModal()">
                 <app-event-modal (close)="hideEventModal()" [event]="event" [index]="i"></app-event-modal>
@@ -21,7 +25,11 @@
             <button (click)="showTaskModal(task)">✎ Edit</button>
         </div>
         <div>Due Date: {{task.dueDate | date:'short'}}</div>
-        <button (click)="deleteTask(task)">🗑️ Delete</button>
+        <button *ngIf="deleteTaskConfirm !== task" (click)="deleteTaskConfirm = task">🗑️ Delete</button>
+        <div class="delete-confirm" *ngIf="deleteTaskConfirm === task">Are you sure?
+            <button (click)="deleteTask(task)">Yes, Delete</button>
+            <button (click)="deleteTaskConfirm = null">No, Cancel</button>
+        </div>
         <div class="modal-parent" *ngIf="taskShow === task">
             <app-modal (closeClick)="hideTaskModal()">
                 <app-task-modal (close)="hideTaskModal()" [task]="task" [index]="i"></app-task-modal>

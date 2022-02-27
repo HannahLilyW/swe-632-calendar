@@ -20,6 +20,9 @@ export class DayDetailComponent implements OnInit {
   taskShow: Task = null;
   eventShow: Event = null;
 
+  deleteEventConfirm: Event = null;
+  deleteTaskConfirm: Task = null;
+
 
   constructor(
     private eventService: EventService,

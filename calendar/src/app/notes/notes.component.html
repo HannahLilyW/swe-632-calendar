@@ -12,7 +12,12 @@
     </div>
     <p [innerHTML]="note.text | newline"></p>
     
-    <button (click)="deleteNote(note)">🗑️ Delete</button>
+    <!-- <button (click)="deleteNote(note)">🗑️ Delete</button> -->
+    <button *ngIf="deleteNoteConfirm !== note" (click)="deleteNoteConfirm = note">🗑️ Delete</button>
+    <div class="delete-confirm" *ngIf="deleteNoteConfirm === note">Are you sure?
+        <button (click)="deleteNote(note)">Yes, Delete</button>
+        <button (click)="deleteNoteConfirm = null">No, Cancel</button>
+    </div>
     <div class="modal-parent" *ngIf="noteShow === note">
         <app-modal (closeClick)="hideNoteModal()">
             <app-note-modal (close)="hideNoteModal()" [note]="note" [index]="i"></app-note-modal>

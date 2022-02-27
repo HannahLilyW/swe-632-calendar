@@ -12,6 +12,7 @@ import { ToastType } from 'src/app/models/toast';
 export class NotesComponent implements OnInit {
   notes: Note[] = [];
   noteShow: Note = null;
+  deleteNoteConfirm: Note = null;
 
   constructor(
     private eventService: EventService,
