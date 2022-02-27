@@ -86,8 +86,8 @@ export class EventService {
                               'SWE 632 HW1 Due'));
 
     this.notes.push(new Note(
-      'grocery list',
-      'eggs, bread, butter',
+      'Grocery List',
+      'Eggs, bread, butter',
       new Date('2022-02-06T10:00:00'),
       new Date('2022-02-08T11:00:00')
     ));

@@ -1,12 +1,12 @@
 <app-month-title [month]='month' [year]='year' (next) = 'goToNextMonth()' (previous) = 'goToPreviousMonth()' ></app-month-title>
 <div id="dayWrapper">
-    <div>Sunday</div>
-    <div>Monday</div>
-    <div>Tuesday</div>
-    <div>Wednesday</div>
-    <div>Thursday</div>
-    <div>Friday</div>
-    <div>Saturday</div>
+    <div class="weekday-name">Sunday</div>
+    <div class="weekday-name">Monday</div>
+    <div class="weekday-name">Tuesday</div>
+    <div class="weekday-name">Wednesday</div>
+    <div class="weekday-name">Thursday</div>
+    <div class="weekday-name">Friday</div>
+    <div class="weekday-name">Saturday</div>
     <app-day *ngFor="let day of days" [day]='day' [month]='month'></app-day>
 </div>
 <button (click)="showTaskModal()">Add Task</button>
