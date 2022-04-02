@@ -15,12 +15,12 @@ export class DayComponent implements OnInit {
   @Input() month: number;
 
   date: number;
-  showDetail:boolean = false;
+  showDetail = false;
   events: Event[];
   tasks: Task[];
-  numOfEvents:number = 0;
-  numOfTasks:number = 0;
-  isDayInCurrentMonth: boolean = true;
+  numOfEvents = 0;
+  numOfTasks = 0;
+  isDayInCurrentMonth = true;
 
   constructor(private eventService: EventService) { }
 

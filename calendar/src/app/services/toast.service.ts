@@ -21,12 +21,12 @@ export class ToastService {
     if (timeout) {
       setTimeout(() => {
         this.removeToast(toast);
-      }, timeout * 1000)
+      }, timeout * 1000);
     }
   }
 
   removeToast = (toast: Toast) => {
-    const index = this.toasts.findIndex(t => t.uuid == toast.uuid);
+    const index = this.toasts.findIndex(t => t.uuid === toast.uuid);
     this.toasts.splice(index, 1);
     this.toastsSubject.next(this.toasts);
   }

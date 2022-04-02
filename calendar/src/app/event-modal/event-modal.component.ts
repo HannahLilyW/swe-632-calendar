@@ -61,12 +61,12 @@ export class EventModalComponent implements OnInit {
       this.event.endDate = endDate;
       this.event.name = this.formGroup.controls.name.value;
       this.eventService.updateEvent(this.event);
-      this.toastService.addToast(ToastType.success, 'Event was edited successfully!', 5)
+      this.toastService.addToast(ToastType.success, 'Event was edited successfully!', 5);
     } else {
       // create
       const event: Event = new Event(startDate, endDate, this.formGroup.controls.name.value);
       this.eventService.addEvent(event);
-      this.toastService.addToast(ToastType.success, 'Event was created successfully!', 5)
+      this.toastService.addToast(ToastType.success, 'Event was created successfully!', 5);
     }
     this.close.emit();
   }

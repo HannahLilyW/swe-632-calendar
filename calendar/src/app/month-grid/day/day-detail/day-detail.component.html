@@ -1,6 +1,14 @@
 <div class="modal-container">
     <h2> {{day | date}} </h2>
-    <h3>Events</h3>
+    <div class="title-container">
+        <h3>Events</h3>
+        <button class="create-button" (click)="showNewEventModal()">+ Create New Event</button>
+    </div>
+    <div class="modal-parent" *ngIf="newEventShow">
+        <app-modal (closeClick)="hideNewEventModal()">
+            <app-event-modal (close)="hideNewEventModal()" [event]="newEventShow"></app-event-modal>
+        </app-modal>
+    </div>
     <div class="task-event-container" *ngFor="let event of events; index as i">
         <div class="name-container">
             <h4>{{event.name}}</h4>
@@ -18,7 +26,15 @@
             </app-modal>
         </div>
     </div>
-    <h3>Tasks</h3>
+    <div class="title-container">
+        <h3>Tasks</h3>
+        <button class="create-button" (click)="showNewTaskModal()">+ Create New Task</button>
+    </div>
+    <div class="modal-parent" *ngIf="newTaskShow">
+        <app-modal (closeClick)="hideNewTaskModal()">
+            <app-task-modal (close)="hideNewTaskModal()" [task]="newTaskShow"></app-task-modal>
+        </app-modal>
+    </div>
     <div class="task-event-container" *ngFor="let task of tasks; index as i">
         <div class="name-container">
             <h4>{{task.name}}</h4>
