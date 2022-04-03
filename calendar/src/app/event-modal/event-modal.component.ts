@@ -75,9 +75,11 @@ export class EventModalComponent implements OnInit {
       this.formGroup.controls.date.setValue(formatDate(this.event.startDate, 'yyyy-MM-dd', 'en'));
       this.formGroup.controls.startTime.setValue(this.eventService.formatTime(this.event.startDate));
       this.formGroup.controls.endTime.setValue(this.eventService.formatTime(this.event.endDate));
-      this.formGroup.controls.recurring.setValue(this.event.recurring);
-      this.formGroup.controls.recurringFrequency.setValue(this.event.recurringFrequency);
-      this.formGroup.controls.recurringUntil.setValue(new Date(this.event.recurringUntil));
+      if (this.event.recurring) {
+        this.formGroup.controls.recurring.setValue(this.event.recurring);
+        this.formGroup.controls.recurringFrequency.setValue(this.event.recurringFrequency);
+        this.formGroup.controls.recurringUntil.setValue(formatDate(this.event.recurringUntil, 'yyyy-MM-dd', 'en'));
+      }
     }
   }
 
@@ -91,7 +93,7 @@ export class EventModalComponent implements OnInit {
       this.event.name = this.formGroup.controls.name.value;
       this.event.recurring = this.formGroup.controls.recurring.value;
       this.event.recurringFrequency = this.formGroup.controls.recurringFrequency.value;
-      this.event.recurringUntil = new Date(this.formGroup.controls.recurringUntil.value);
+      this.event.recurringUntil = new Date(`${this.formGroup.controls.recurringUntil.value}T00:00:00`);
       this.eventService.updateEvent(this.event);
       this.toastService.addToast(ToastType.success, 'Event was edited successfully!', 5);
     } else {
@@ -102,7 +104,7 @@ export class EventModalComponent implements OnInit {
         this.formGroup.controls.name.value,
         this.formGroup.controls.recurring.value,
         this.formGroup.controls.recurringFrequency.value,
-        new Date(this.formGroup.controls.recurringUntil.value)
+        new Date(`${this.formGroup.controls.recurringUntil.value}T00:00:00`)
       );
       this.eventService.addEvent(event);
       this.toastService.addToast(ToastType.success, 'Event was created successfully!', 5);

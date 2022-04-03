@@ -44,6 +44,7 @@
         <div>Due Date: {{task.dueDate | date:'short'}}</div>
         <button *ngIf="deleteTaskConfirm !== task" (click)="deleteTaskConfirm = task">🗑️ Delete</button>
         <div class="delete-confirm" *ngIf="deleteTaskConfirm === task">Are you sure?
+            <ng-template [ngIf]="task.recurring">This will delete all tasks in the series.</ng-template>
             <button (click)="deleteTask(task)">Yes, Delete</button>
             <button (click)="deleteTaskConfirm = null">No, Cancel</button>
         </div>

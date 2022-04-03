@@ -65,9 +65,11 @@ export class TaskModalComponent implements OnInit {
       this.formGroup.controls.name.setValue(this.task.name);
       this.formGroup.controls.dueDate.setValue(formatDate(this.task.dueDate, 'yyyy-MM-dd', 'en'));
       this.formGroup.controls.dueTime.setValue(this.eventService.formatTime(this.task.dueDate));
-      this.formGroup.controls.recurring.setValue(this.task.recurring);
-      this.formGroup.controls.recurringFrequency.setValue(this.task.recurringFrequency);
-      this.formGroup.controls.recurringUntil.setValue(this.task.recurringUntil);
+      if (this.task.recurring) {
+        this.formGroup.controls.recurring.setValue(this.task.recurring);
+        this.formGroup.controls.recurringFrequency.setValue(this.task.recurringFrequency);
+        this.formGroup.controls.recurringUntil.setValue(formatDate(this.task.recurringUntil, 'yyyy-MM-dd', 'en'));
+      }
     }
   }
 
@@ -79,7 +81,7 @@ export class TaskModalComponent implements OnInit {
       this.task.name = this.formGroup.controls.name.value;
       this.task.recurring = this.formGroup.controls.recurring.value;
       this.task.recurringFrequency = this.formGroup.controls.recurringFrequency.value;
-      this.task.recurringUntil = new Date(this.formGroup.controls.recurringUntil.value);
+      this.task.recurringUntil = new Date(`${this.formGroup.controls.recurringUntil.value}T00:00:00`);
       this.eventService.updateTask(this.task);
       this.toastService.addToast(ToastType.success, 'Event was edited successfully!', 5);
     } else {
@@ -89,7 +91,7 @@ export class TaskModalComponent implements OnInit {
         this.formGroup.controls.name.value,
         this.formGroup.controls.recurring.value,
         this.formGroup.controls.recurringFrequency.value,
-        new Date(this.formGroup.controls.recurringUntil.value)
+        new Date(`${this.formGroup.controls.recurringUntil.value}T00:00:00`)
       );
       this.eventService.addTask(task);
       this.toastService.addToast(ToastType.success, 'Event was created successfully!', 5);
