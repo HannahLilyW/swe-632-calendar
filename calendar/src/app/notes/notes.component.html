@@ -20,7 +20,7 @@
     </div>
     <div class="modal-parent" *ngIf="noteShow === note">
         <app-modal (closeClick)="hideNoteModal()">
-            <app-note-modal (close)="hideNoteModal()" [note]="note" [index]="i"></app-note-modal>
+            <app-note-modal (close)="hideNoteModal()" [note]="note" [index]="i" [isEdit]="true"></app-note-modal>
         </app-modal>
     </div>
 </div>

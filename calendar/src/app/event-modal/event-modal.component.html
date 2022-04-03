@@ -1,8 +1,8 @@
-<h1>{{event ? 'Edit' : 'Create'}} Event</h1>
+<h1>{{isEdit ? 'Edit' : 'Create'}} Event</h1>
 <form [formGroup]="formGroup">
     <div>
         <div>
-            <label for="inputName">Name <span class="red">* (Required)</span></label>
+            <label for="inputName">Name <span class="red" *ngIf="!formGroup.controls.name.value">* (Required)</span></label>
         </div>
         <div>
             <input id="inputName" type="text" formControlName="name">
@@ -13,7 +13,7 @@
     </div>
     <div>
         <div>
-            <label for="inputDate">Date <span class="red">* (Required)</span></label>
+            <label for="inputDate">Date <span class="red" *ngIf="!formGroup.controls.date.value">* (Required)</span></label>
         </div>
         <div>
             <input id="inputDate" type="date" formControlName="date">
@@ -25,7 +25,7 @@
     <div class="start-end-time-container">
         <div>
             <div>
-                <label for="inputStartTime">Start Time <span class="red">* (Required)</span></label>
+                <label for="inputStartTime">Start Time <span class="red" *ngIf="!formGroup.controls.startTime.value">* (Required)</span></label>
             </div>
             <div>
                 <input id="inputStartTime" type="time" formControlName="startTime">
@@ -37,7 +37,7 @@
         <div> - </div>
         <div>
             <div>
-                <label for="inputEndTime">End Time <span class="red">* (Required)</span></label>
+                <label for="inputEndTime">End Time <span class="red" *ngIf="!formGroup.controls.endTime.value">* (Required)</span></label>
             </div>
             <div>
                 <input id="inputEndTime" type="time" formControlName="endTime">
@@ -45,6 +45,30 @@
             <div class="errors" *ngIf="formGroup.controls.endTime.touched && formGroup.controls.endTime.errors && formGroup.controls.endTime.errors.required">
                 Please enter a valid end time.
             </div>
+        </div>
+    </div>
+    <div class="errors" *ngIf="formGroup.errors && formGroup.errors['startTimeBeforeEndTime']">
+        {{ formGroup.errors['startTimeBeforeEndTime'] }}
+    </div>
+    <div class="recurring-checkbox" (click)="toggleRecurring()">
+        <input id="inputReccuring" type="checkbox" formControlName="recurring">
+        <label for="inputRecurring">Make Event Recurring</label>
+    </div>
+    <div *ngIf="formGroup.controls.recurring.value">
+        <div class="recurring-frequency">
+            <label for="recurringFrequency">Event should repeat: </label>
+            <select class="form-control" id="recurringFrequency" formControlName="recurringFrequency">
+                <option value="DAILY" selected>Daily</option>
+                <option value="WEEKLY">Weekly</option>
+                <option value="MONTHLY">Monthly</option>
+            </select>
+            <span class="red" *ngIf="!formGroup.controls.recurringFrequency.value">* (Required)</span>
+            <label for="recurringUntil"> Until: </label>
+            <input id="recurringUntil" type="date" formControlName="recurringUntil">
+            <span class="red" *ngIf="!formGroup.controls.recurringUntil.value">* (Required)</span>
+        </div>
+        <div class="errors" *ngIf="formGroup.errors && formGroup.errors['dateBeforeRecurringUntil']">
+            {{ formGroup.errors['dateBeforeRecurringUntil'] }}
         </div>
     </div>
     <button (click)="save()" [disabled]="!formGroup.valid">Save</button>

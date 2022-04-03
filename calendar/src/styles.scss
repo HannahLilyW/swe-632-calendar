@@ -46,4 +46,16 @@ button {
     stroke-width: 0;
     stroke: currentColor;
     fill: currentColor;
-  }
+}
+
+.recurring-checkbox {
+    padding: 4px;
+    cursor: pointer;
+    input, label {
+        cursor: pointer;
+    }
+
+    &:hover {
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    }
+}

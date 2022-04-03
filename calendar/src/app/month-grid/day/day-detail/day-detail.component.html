@@ -17,12 +17,13 @@
         <div>Duration: {{event.startDate | date:'short'}} - {{event.endDate | date:'short'}}</div>
         <button *ngIf="deleteEventConfirm !== event" (click)="deleteEventConfirm = event">🗑️ Delete</button>
         <div class="delete-confirm" *ngIf="deleteEventConfirm === event">Are you sure?
+            <ng-template [ngIf]="event.recurring">This will delete all events in the series.</ng-template>
             <button (click)="deleteEvent(event)">Yes, Delete</button>
             <button (click)="deleteEventConfirm = null">No, Cancel</button>
         </div>
         <div class="modal-parent" *ngIf="eventShow === event">
             <app-modal (closeClick)="hideEventModal()">
-                <app-event-modal (close)="hideEventModal()" [event]="event" [index]="i"></app-event-modal>
+                <app-event-modal (close)="hideEventModal()" [event]="event" [index]="i" [isEdit]="true"></app-event-modal>
             </app-modal>
         </div>
     </div>
@@ -48,7 +49,7 @@
         </div>
         <div class="modal-parent" *ngIf="taskShow === task">
             <app-modal (closeClick)="hideTaskModal()">
-                <app-task-modal (close)="hideTaskModal()" [task]="task" [index]="i"></app-task-modal>
+                <app-task-modal (close)="hideTaskModal()" [task]="task" [index]="i" [isEdit]="true"></app-task-modal>
             </app-modal>
         </div>
     </div>
