@@ -32,13 +32,13 @@ export class EventService {
   }
 
   updateEvent = (event: Event) => {
-    const index = this.events.findIndex((e => e.uuid == event.uuid));
+    const index = this.events.findIndex((e => e.uuid === event.uuid));
     this.events[index] = event;
     this.eventsSubject.next(this.events);
   }
 
   deleteEvent = (event: Event) => {
-    const index = this.events.findIndex((e => e.uuid == event.uuid));
+    const index = this.events.findIndex((e => e.uuid === event.uuid));
     this.events.splice(index, 1);
     this.eventsSubject.next(this.events);
   }
