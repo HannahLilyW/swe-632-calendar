@@ -48,6 +48,10 @@ button {
     fill: currentColor;
 }
 
+svg {
+    flex-shrink: 0;
+}
+
 .recurring-checkbox {
     padding: 4px;
     cursor: pointer;

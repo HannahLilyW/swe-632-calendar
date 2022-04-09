@@ -1,57 +1,77 @@
 <div class="modal-container">
     <h2> {{day | date}} </h2>
-    <div class="title-container">
-        <h3>Events</h3>
-        <button class="create-button" (click)="showNewEventModal()">+ Create New Event</button>
-    </div>
-    <div class="modal-parent" *ngIf="newEventShow">
-        <app-modal (closeClick)="hideNewEventModal()">
-            <app-event-modal (close)="hideNewEventModal()" [event]="newEventShow"></app-event-modal>
-        </app-modal>
-    </div>
-    <div class="task-event-container" *ngFor="let event of events; index as i">
-        <div class="name-container">
-            <h4>{{event.name}}</h4>
-            <button (click)="showEventModal(event)">✎ Edit</button>
+    <div class="tasks-events-grid">
+        <div>
+            <div class="title-container">
+                <svg class="icon icon-clock" viewBox="0 0 32 32">
+                    <path d="M20.586 23.414l-6.586-6.586v-8.828h4v7.172l5.414 5.414zM16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 28c-6.627 0-12-5.373-12-12s5.373-12 12-12c6.627 0 12 5.373 12 12s-5.373 12-12 12z">
+                    </path>
+                </svg>
+                <h3>Events</h3>
+                <button class="create-button" (click)="showNewEventModal()">+ Create New Event</button>
+            </div>
+            <div class="modal-parent" *ngIf="newEventShow">
+                <app-modal (closeClick)="hideNewEventModal()">
+                    <app-event-modal (close)="hideNewEventModal()" [event]="newEventShow"></app-event-modal>
+                </app-modal>
+            </div>
+            <div class="task-event-outer-container">
+                <div *ngIf="!events.length" class="no-events-tasks">No events on this day.</div>
+                <div class="task-event-container" *ngFor="let event of events; index as i">
+                    <div class="name-container">
+                        <h4>{{event.name}}</h4>
+                        <button (click)="showEventModal(event)">✎ Edit</button>
+                    </div>
+                    <div>{{event.startDate | date:'h:mm a'}} - {{event.endDate | date:'h:mm a'}}</div>
+                    <button *ngIf="deleteEventConfirm !== event" (click)="deleteEventConfirm = event">🗑️ Delete</button>
+                    <div class="delete-confirm" *ngIf="deleteEventConfirm === event">Are you sure?
+                        <ng-template [ngIf]="event.recurring">This will delete all events in the series.</ng-template>
+                        <button (click)="deleteEvent(event)">Yes, Delete</button>
+                        <button (click)="deleteEventConfirm = null">No, Cancel</button>
+                    </div>
+                    <div class="modal-parent" *ngIf="eventShow === event">
+                        <app-modal (closeClick)="hideEventModal()">
+                            <app-event-modal (close)="hideEventModal()" [event]="event" [index]="i" [isEdit]="true"></app-event-modal>
+                        </app-modal>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>Duration: {{event.startDate | date:'short'}} - {{event.endDate | date:'short'}}</div>
-        <button *ngIf="deleteEventConfirm !== event" (click)="deleteEventConfirm = event">🗑️ Delete</button>
-        <div class="delete-confirm" *ngIf="deleteEventConfirm === event">Are you sure?
-            <ng-template [ngIf]="event.recurring">This will delete all events in the series.</ng-template>
-            <button (click)="deleteEvent(event)">Yes, Delete</button>
-            <button (click)="deleteEventConfirm = null">No, Cancel</button>
-        </div>
-        <div class="modal-parent" *ngIf="eventShow === event">
-            <app-modal (closeClick)="hideEventModal()">
-                <app-event-modal (close)="hideEventModal()" [event]="event" [index]="i" [isEdit]="true"></app-event-modal>
-            </app-modal>
-        </div>
-    </div>
-    <div class="title-container">
-        <h3>Tasks</h3>
-        <button class="create-button" (click)="showNewTaskModal()">+ Create New Task</button>
-    </div>
-    <div class="modal-parent" *ngIf="newTaskShow">
-        <app-modal (closeClick)="hideNewTaskModal()">
-            <app-task-modal (close)="hideNewTaskModal()" [task]="newTaskShow"></app-task-modal>
-        </app-modal>
-    </div>
-    <div class="task-event-container" *ngFor="let task of tasks; index as i">
-        <div class="name-container">
-            <h4>{{task.name}}</h4>
-            <button (click)="showTaskModal(task)">✎ Edit</button>
-        </div>
-        <div>Due Date: {{task.dueDate | date:'short'}}</div>
-        <button *ngIf="deleteTaskConfirm !== task" (click)="deleteTaskConfirm = task">🗑️ Delete</button>
-        <div class="delete-confirm" *ngIf="deleteTaskConfirm === task">Are you sure?
-            <ng-template [ngIf]="task.recurring">This will delete all tasks in the series.</ng-template>
-            <button (click)="deleteTask(task)">Yes, Delete</button>
-            <button (click)="deleteTaskConfirm = null">No, Cancel</button>
-        </div>
-        <div class="modal-parent" *ngIf="taskShow === task">
-            <app-modal (closeClick)="hideTaskModal()">
-                <app-task-modal (close)="hideTaskModal()" [task]="task" [index]="i" [isEdit]="true"></app-task-modal>
-            </app-modal>
+        <div>
+            <div class="title-container">
+                <svg class="icon icon-checkmark" viewBox="0 0 32 32">
+                    <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z">
+                    </path>
+                </svg>
+                <h3>Tasks</h3>
+                <button class="create-button" (click)="showNewTaskModal()">+ Create New Task</button>
+            </div>
+            <div class="modal-parent" *ngIf="newTaskShow">
+                <app-modal (closeClick)="hideNewTaskModal()">
+                    <app-task-modal (close)="hideNewTaskModal()" [task]="newTaskShow"></app-task-modal>
+                </app-modal>
+            </div>
+            <div class="task-event-outer-container">
+                <div *ngIf="!tasks.length" class="no-events-tasks">No tasks on this day.</div>
+                <div class="task-event-container" *ngFor="let task of tasks; index as i">
+                    <div class="name-container">
+                        <h4>{{task.name}}</h4>
+                        <button (click)="showTaskModal(task)">✎ Edit</button>
+                    </div>
+                    <div>Due: {{task.dueDate | date:'h:mm a'}}</div>
+                    <button *ngIf="deleteTaskConfirm !== task" (click)="deleteTaskConfirm = task">🗑️ Delete</button>
+                    <div class="delete-confirm" *ngIf="deleteTaskConfirm === task">Are you sure?
+                        <ng-template [ngIf]="task.recurring">This will delete all tasks in the series.</ng-template>
+                        <button (click)="deleteTask(task)">Yes, Delete</button>
+                        <button (click)="deleteTaskConfirm = null">No, Cancel</button>
+                    </div>
+                    <div class="modal-parent" *ngIf="taskShow === task">
+                        <app-modal (closeClick)="hideTaskModal()">
+                            <app-task-modal (close)="hideTaskModal()" [task]="task" [index]="i" [isEdit]="true"></app-task-modal>
+                        </app-modal>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -12,7 +12,27 @@
     }
 }
 
+.event-task-container {
+    height: 80%;
+    overflow: auto;
+}
+
 .other-month {
     background-color:  rgba(0, 0, 0, 0.3);
     color: rgba(0, 0, 0, 0.5);
+}
+
+.preview {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 4px;
+    font-size: small;
+}
+
+.name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

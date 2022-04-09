@@ -3,6 +3,13 @@
     align-items: center;
 }
 
+.task-event-outer-container {
+    overflow: auto;
+    margin: 4px;
+    padding: 4px;
+    max-height: 75vh;
+}
+
 .task-event-container {
     margin: 4px;
     padding: 4px;
@@ -16,4 +23,15 @@
 .title-container {
     display: flex;
     align-items: center;
+    gap: 4px;
+}
+
+.tasks-events-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.no-events-tasks {
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
 }
