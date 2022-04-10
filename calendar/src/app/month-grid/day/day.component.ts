@@ -20,7 +20,8 @@ export class DayComponent implements OnInit {
   tasks: Task[];
   numOfEvents = 0;
   numOfTasks = 0;
-  isDayInCurrentMonth = true;
+
+  isToday = true;
 
   constructor(private eventService: EventService) { }
 
@@ -35,6 +36,12 @@ export class DayComponent implements OnInit {
       this.tasks = tasks.filter (task => this.taskInDay(task));
       this.numOfTasks = this.tasks.length; 
     });
+
+    this.isToday = (
+      this.day.getFullYear() === new Date().getFullYear() &&
+      this.day.getMonth() === new Date().getMonth() &&
+      this.day.getDate() === new Date().getDate()
+    );
   }
 
   /**

@@ -36,3 +36,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.today {
+    background-color: rgba(255, 255, 100, 0.3);
+
+    &.other-month {
+        background-color: rgba(100, 100, 0, 0.3);
+    }
+}

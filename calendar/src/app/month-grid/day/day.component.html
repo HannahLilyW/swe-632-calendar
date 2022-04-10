@@ -1,4 +1,4 @@
-<div class="day-container" [ngClass]="{'other-month': this.day.getMonth() !== this.month}" (click)="showDayDetail()">
+<div class="day-container" [ngClass]="{'other-month': this.day.getMonth() !== this.month, 'today': this.isToday}" (click)="showDayDetail()">
     {{date}}
     <div class="event-task-container">
         <div *ngFor="let event of events" class="preview event">
