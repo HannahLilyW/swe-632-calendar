@@ -6,17 +6,32 @@
                 </path>
             </svg>
         </button>
-        <select name="monthSelect" id="monthSelect" title="Month Input" formControlName="month" (change)="monthYearChange()">
+        <select name="monthSelect" id="monthSelect" title="Month Input" formControlName="month" (change)="monthYearChange($event)">
             <ng-template ngFor let-m [ngForOf]="monthNames" let-i="index">
                 <option value="{{i}}">{{m}}</option>
             </ng-template>
         </select>
-        <select name="yearSelect" id="yearSelect" title="Year Input" formControlName="year" (change)="monthYearChange()">
+        <select name="yearSelect" id="yearSelect" title="Year Input" formControlName="year" (change)="monthYearChange($event)">
             <ng-template ngFor let-y [ngForOf]="allowedYears">
                 <option value="{{y}}">{{y}}</option>
             </ng-template>
         </select>
         <button class="next" (click)="goToNextMonth()" title="Next Month">
+            <svg class="icon arrow-left" viewBox="0 0 32 32">
+                <path d="M31 16l-15-15v9h-16v12h16v9z">
+                </path>
+            </svg>
+        </button>
+    </div>
+    <div class="mobile-title-container">
+        <button class="previous" (click)="goToPreviousDay()" title="Previous Month">
+            <svg class="icon arrow-left" viewBox="0 0 32 32">
+                <path d="M1 16l15 15v-9h16v-12h-16v-9z">
+                </path>
+            </svg>
+        </button>
+        <input type="date" name="mobileDate" value="{{currentDate}}" (change)="monthYearChange($event)">
+        <button class="next" (click)="goToNextDay()" title="Next Month">
             <svg class="icon arrow-left" viewBox="0 0 32 32">
                 <path d="M31 16l-15-15v9h-16v12h16v9z">
                 </path>

@@ -6,3 +6,19 @@
 .weekday-name {
     text-align: center;
 }
+
+#mobileView {
+    display: none;
+}
+
+
+
+@media (max-width: 768px)  {
+    #mobileView {
+        display: block;
+    }
+
+    #desktopView {
+        display: none;
+    }
+}
