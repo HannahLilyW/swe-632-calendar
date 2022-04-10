@@ -1,5 +1,26 @@
-<div class = "month-title-container">
-    <button class = "previous" (click)="goToPreviousMonth()">🢀 Previous Month</button>
-    <div id='monthTitle'>{{monthNames[month]}} {{year}}</div>
-    <button class ="next" (click)="goToNextMonth()">Next Month 🢂</button>
-</div>
+<form [formGroup]="formGroup">
+    <div class="month-title-container">
+        <button class="previous" (click)="goToPreviousMonth()" title="Previous Month">
+            <svg class="icon arrow-left" viewBox="0 0 32 32">
+                <path d="M1 16l15 15v-9h16v-12h-16v-9z">
+                </path>
+            </svg>
+        </button>
+        <select name="monthSelect" id="monthSelect" title="Month Input" formControlName="month" (change)="monthYearChange()">
+            <ng-template ngFor let-m [ngForOf]="monthNames" let-i="index">
+                <option value="{{i}}">{{m}}</option>
+            </ng-template>
+        </select>
+        <select name="yearSelect" id="yearSelect" title="Year Input" formControlName="year" (change)="monthYearChange()">
+            <ng-template ngFor let-y [ngForOf]="allowedYears">
+                <option value="{{y}}">{{y}}</option>
+            </ng-template>
+        </select>
+        <button class="next" (click)="goToNextMonth()" title="Next Month">
+            <svg class="icon arrow-left" viewBox="0 0 32 32">
+                <path d="M31 16l-15-15v9h-16v12h16v9z">
+                </path>
+            </svg>
+        </button>
+    </div>
+</form>

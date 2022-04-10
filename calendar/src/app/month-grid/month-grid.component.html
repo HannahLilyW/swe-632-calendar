@@ -1,4 +1,4 @@
-<app-month-title [month]='month' [year]='year' (next) = 'goToNextMonth()' (previous) = 'goToPreviousMonth()' ></app-month-title>
+<app-month-title [month]='month' [year]='year' (next)='goToNextMonth()' (previous)='goToPreviousMonth()' (dateChange)="goToMonth($event)"></app-month-title>
 <button (click)="showTaskModal()">+ Create New Task</button>
 <button (click)="showEventModal()">+ Create New Event</button>
 <button (click)="showNoteModal()">+ Create New Note</button>
