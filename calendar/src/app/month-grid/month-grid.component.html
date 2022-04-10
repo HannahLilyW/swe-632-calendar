@@ -1,4 +1,7 @@
-<app-month-title [month]='month' [year]='year' (next) = 'goToNextMonth()' (previous) = 'goToPreviousMonth()' ></app-month-title>
+<app-month-title [month]='month' [year]='year' (next)='goToNextMonth()' (previous)='goToPreviousMonth()' (dateChange)="goToMonth($event)"></app-month-title>
+<button (click)="showTaskModal()">+ Create New Task</button>
+<button (click)="showEventModal()">+ Create New Event</button>
+<button (click)="showNoteModal()">+ Create New Note</button>
 <div id="dayWrapper">
     <div class="weekday-name">Sunday</div>
     <div class="weekday-name">Monday</div>
@@ -9,9 +12,7 @@
     <div class="weekday-name">Saturday</div>
     <app-day *ngFor="let day of days" [day]='day' [month]='month'></app-day>
 </div>
-<button (click)="showTaskModal()">+ Create New Task</button>
-<button (click)="showEventModal()">+ Create New Event</button>
-<button (click)="showNoteModal()">+ Create New Note</button>
+
 <div class="modal-parent" *ngIf="taskShow">
     <app-modal (closeClick)="hideTaskModal()">
         <app-task-modal (close)="hideTaskModal()"></app-task-modal>
