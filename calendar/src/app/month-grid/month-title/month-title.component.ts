@@ -11,8 +11,8 @@ export class MonthTitleComponent implements OnInit {
   @Input() month: number;
   @Input() year: number;
   @Input() date: number;
-  @Output() nextMonth = new EventEmitter();
-  @Output() previousMonth = new EventEmitter();
+  @Output() next = new EventEmitter();
+  @Output() previous = new EventEmitter();
   @Output() dateChange = new EventEmitter();
 
   monthNames: string[] = [
@@ -67,7 +67,8 @@ export class MonthTitleComponent implements OnInit {
   }
 
   goToNextMonth = (emit:boolean = true) => {
-    if (emit) this.nextMonth.emit();
+    console.log(emit);
+    if (emit) this.next.emit();
     this.formGroup.controls.month.setValue((parseInt(this.formGroup.controls.month.value) + 1) % 12);
     if (parseInt(this.formGroup.controls.month.value) === 0) {
       this.formGroup.controls.year.setValue(parseInt(this.formGroup.controls.year.value) + 1);
@@ -76,7 +77,8 @@ export class MonthTitleComponent implements OnInit {
   }
 
   goToPreviousMonth = (emit:boolean = true) => {
-    if (emit) this.previousMonth.emit();
+    console.log(emit);
+    if (emit) this.previous.emit();
     this.formGroup.controls.month.setValue((parseInt(this.formGroup.controls.month.value) + 11) % 12);
     if (parseInt(this.formGroup.controls.month.value) === 11) {
       this.formGroup.controls.year.setValue(parseInt(this.formGroup.controls.year.value) - 1);
@@ -95,7 +97,7 @@ export class MonthTitleComponent implements OnInit {
   }
 
   goToPreviousDay = () => {
-    let lastDayofPreviousMonth = this.getLastDayOfMonth(this.formGroup.controls.month.value)
+    let lastDayofPreviousMonth = this.getLastDayOfMonth(this.formGroup.controls.month.value - 1)
     let newDay = (this.formGroup.controls.date.value - 1) < 1 ? lastDayofPreviousMonth : this.formGroup.controls.date.value - 1;
     if (newDay === lastDayofPreviousMonth && (this.formGroup.controls.date.value - 1) < 1) {
       this.goToPreviousMonth(false);
@@ -105,8 +107,14 @@ export class MonthTitleComponent implements OnInit {
     this.dateChange.emit(new Date(parseInt(this.formGroup.controls.year.value), parseInt(this.formGroup.controls.month.value), parseInt(this.formGroup.controls.date.value)));
   }
 
-  getLastDayOfMonth = (m=this.formGroup.controls.month.value + 1, y=this.formGroup.controls.year.value ) => {
-    let d = new Date(y, m, 0);
+  /**
+   * 
+   * @param m the month that you want to get the last day of. It will default to the current month.
+   * @param y  the year of the month that you want to get the last day of
+   * @returns the last day of the given month
+   */
+  getLastDayOfMonth = (m=this.formGroup.controls.month.value, y=this.formGroup.controls.year.value ) => {
+    let d = new Date(y, m + 1, 0);
     return d.getDate();
   }
 

@@ -23,12 +23,11 @@ select, input {
     box-shadow: 0px 0px 10px gray;
   }
 
-  .mobile-title-container {
-    display: none;
-  }
 }
 
-
+.mobile-title-container {
+  display: none;
+}
 
 @media (max-width: 768px)  {
   .mobile-title-container {
