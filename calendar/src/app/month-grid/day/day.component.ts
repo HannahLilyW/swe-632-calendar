@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Event } from 'src/app/models/event';
 import { Task } from 'src/app/models/task';
 import { EventService } from 'src/app/services/event.service';
@@ -11,10 +11,13 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class DayComponent implements OnInit {
 
-  @Input() day: Date;
+  @Input() set day(value: Date) {
+    this.date = value;
+    this.ngOnInit();
+  }
   @Input() month: number;
 
-  date: number;
+  date: Date;
   showDetail = false;
   events: Event[];
   tasks: Task[];
@@ -26,7 +29,6 @@ export class DayComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
-    this.date = this.day.getDate();
     this.eventService.eventsSubject.subscribe(events => {
       this.events = events.filter (event => this.eventInDay(event));
       this.numOfEvents = this.events.length;
@@ -38,9 +40,9 @@ export class DayComponent implements OnInit {
     });
 
     this.isToday = (
-      this.day.getFullYear() === new Date().getFullYear() &&
-      this.day.getMonth() === new Date().getMonth() &&
-      this.day.getDate() === new Date().getDate()
+      this.date.getFullYear() === new Date().getFullYear() &&
+      this.date.getMonth() === new Date().getMonth() &&
+      this.date.getDate() === new Date().getDate()
     );
   }
 
@@ -76,31 +78,35 @@ export class DayComponent implements OnInit {
   eventInDay = (event: Event) => {
     // Case 1: Not recurring
     if (!event.recurring) {
-      return (this.sameDay(event.startDate, this.day));
+      return (this.sameDay(event.startDate, this.date));
     } else {
       // Case 2: Recurring daily
       if (event.recurringFrequency === 'DAILY') {
-        return (this.date1OnOrBeforeDate2(event.startDate, this.day) && 
-          this.date1OnOrBeforeDate2(this.day, event.recurringUntil)
+        return (this.date1OnOrBeforeDate2(event.startDate, this.date) && 
+          this.date1OnOrBeforeDate2(this.date, event.recurringUntil)
         );
       }
   
       // Case 3: Recurring weekly
       if (event.recurringFrequency === 'WEEKLY') {
-        return (this.date1OnOrBeforeDate2(event.startDate, this.day) && 
-          this.date1OnOrBeforeDate2(this.day, event.recurringUntil) &&
-          this.day.getDay() === event.startDate.getDay()
+        return (this.date1OnOrBeforeDate2(event.startDate, this.date) && 
+          this.date1OnOrBeforeDate2(this.date, event.recurringUntil) &&
+          this.date.getDay() === event.startDate.getDay()
         );
       }
   
       // Case 4: Recurring monthly
       if (event.recurringFrequency === 'MONTHLY') {
-        return (this.date1OnOrBeforeDate2(event.startDate, this.day) && 
-          this.date1OnOrBeforeDate2(this.day, event.recurringUntil) &&
-          this.day.getDate() === event.startDate.getDate()
+        return (this.date1OnOrBeforeDate2(event.startDate, this.date) && 
+          this.date1OnOrBeforeDate2(this.date, event.recurringUntil) &&
+          this.date.getDate() === event.startDate.getDate()
         );
       }
     }
+  }
+
+  debug = () => {
+    console.log(this.date);
   }
 
   /**
@@ -115,28 +121,28 @@ export class DayComponent implements OnInit {
   taskInDay = (task: Task) => {
     // Case 1: Not recurring
     if (!task.recurring) {
-      return (this.sameDay(task.dueDate, this.day));
+      return (this.sameDay(task.dueDate, this.date));
     } else {
       // Case 2: Recurring daily
       if (task.recurringFrequency === 'DAILY') {
-        return (this.date1OnOrBeforeDate2(task.dueDate, this.day) && 
-          this.date1OnOrBeforeDate2(this.day, task.recurringUntil)
+        return (this.date1OnOrBeforeDate2(task.dueDate, this.date) && 
+          this.date1OnOrBeforeDate2(this.date, task.recurringUntil)
         );
       }
 
       // Case 3: Recurring weekly
       if (task.recurringFrequency === 'WEEKLY') {
-        return (this.date1OnOrBeforeDate2(task.dueDate, this.day) && 
-          this.date1OnOrBeforeDate2(this.day, task.recurringUntil) &&
-          this.day.getDay() === task.dueDate.getDay()
+        return (this.date1OnOrBeforeDate2(task.dueDate, this.date) && 
+          this.date1OnOrBeforeDate2(this.date, task.recurringUntil) &&
+          this.date.getDay() === task.dueDate.getDay()
         );
       }
 
       // Case 4: Recurring monthly
       if (task.recurringFrequency === 'MONTHLY') {
-        return (this.date1OnOrBeforeDate2(task.dueDate, this.day) && 
-          this.date1OnOrBeforeDate2(this.day, task.recurringUntil) &&
-          this.day.getDate() === task.dueDate.getDate()
+        return (this.date1OnOrBeforeDate2(task.dueDate, this.date) && 
+          this.date1OnOrBeforeDate2(this.date, task.recurringUntil) &&
+          this.date.getDate() === task.dueDate.getDate()
         );
       }
     }
@@ -151,6 +157,6 @@ export class DayComponent implements OnInit {
   }
 
   checkIfDayIsInCurrentMonth = () => {
-    return this.day.getMonth() === this.month;
+    return this.date.getMonth() === this.month;
   }
 }

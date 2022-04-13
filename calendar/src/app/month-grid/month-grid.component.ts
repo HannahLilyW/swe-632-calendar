@@ -39,9 +39,7 @@ export class MonthGridComponent implements OnInit {
   }
 
   goToMonth = (newDate: Date) => {
-    this.singleDay.setMonth(newDate.getMonth());
-    this.singleDay.setFullYear(newDate.getFullYear());
-    this.singleDay.setDate(newDate.getDate());
+    this.singleDay = newDate;
     this.populateDaysFromSingleDay(this.singleDay);
   }
 

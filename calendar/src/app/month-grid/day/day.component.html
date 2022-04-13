@@ -1,5 +1,5 @@
-<div class="day-container" [ngClass]="{'other-month': this.day.getMonth() !== this.month, 'today': this.isToday}" (click)="showDayDetail()">
-    {{date}}
+<div class="day-container" [ngClass]="{'other-month': this.date.getMonth() !== this.month, 'today': this.isToday}" (click)="showDayDetail()">
+    {{date | date: 'd'}}
     <div class="event-task-container">
         <div *ngFor="let event of events" class="preview event">
             <svg class="icon icon-clock" viewBox="0 0 32 32">
@@ -22,7 +22,7 @@
     </div>
     <div class="modal-parent" *ngIf="showDetail">
         <app-modal (closeClick)="hideDayDetail()">
-            <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]=tasks [events]=events [day]=day>
+            <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]=tasks [events]=events [day]=date>
             </app-day-detail>
         </app-modal>
     </div>
