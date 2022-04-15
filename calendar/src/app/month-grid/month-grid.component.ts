@@ -53,7 +53,6 @@ export class MonthGridComponent implements OnInit {
    *  or the last of the month singleDay is in if the last is a Saturday
    */
   populateDaysFromSingleDay = (singleDay: Date) => {
-    console.log(singleDay);
     this.days = [];
 
     // Get first day of month singleDay is in

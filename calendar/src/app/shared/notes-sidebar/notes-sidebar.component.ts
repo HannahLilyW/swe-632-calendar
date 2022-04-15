@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotesSidebarComponent implements OnInit {
 
-  notesShow: boolean = true;
+  notesShow: boolean = false;
 
   constructor() { }
 

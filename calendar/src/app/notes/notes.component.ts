@@ -25,7 +25,13 @@ export class NotesComponent implements OnInit {
     });
   }
 
-  showNoteModal = (note: Note) => { this.noteShow = note; };
+  showNoteModal = (note: Note = null) => {
+    if (note) {
+      this.noteShow = note;
+    } else {
+      this.noteShow = new Note('', ''); 
+    }
+  };
   hideNoteModal = () => { this.noteShow = null; };
 
   deleteNote = (note: Note) => {
