@@ -1,16 +1,21 @@
-<app-month-title [month]='month' [year]='year' (next)='goToNextMonth()' (previous)='goToPreviousMonth()' (dateChange)="goToMonth($event)"></app-month-title>
+<app-month-title [month]='month' [date]='date' [year]='year' (next)='goToNextMonth()' (previous)='goToPreviousMonth()' (dateChange)="goToMonth($event)"></app-month-title>
 <button (click)="showTaskModal()">+ Create New Task</button>
 <button (click)="showEventModal()">+ Create New Event</button>
 <button (click)="showNoteModal()">+ Create New Note</button>
-<div id="dayWrapper">
-    <div class="weekday-name">Sunday</div>
-    <div class="weekday-name">Monday</div>
-    <div class="weekday-name">Tuesday</div>
-    <div class="weekday-name">Wednesday</div>
-    <div class="weekday-name">Thursday</div>
-    <div class="weekday-name">Friday</div>
-    <div class="weekday-name">Saturday</div>
-    <app-day *ngFor="let day of days" [day]='day' [month]='month'></app-day>
+<div id="desktopView">
+    <div id="dayWrapper">
+        <div class="weekday-name">Sunday</div>
+        <div class="weekday-name">Monday</div>
+        <div class="weekday-name">Tuesday</div>
+        <div class="weekday-name">Wednesday</div>
+        <div class="weekday-name">Thursday</div>
+        <div class="weekday-name">Friday</div>
+        <div class="weekday-name">Saturday</div>
+        <app-day *ngFor="let day of days" [day]='day' [month]='month'></app-day>
+    </div>
+</div>
+<div id="mobileView">
+    <app-day [day]='singleDay' [month]='month'></app-day>
 </div>
 
 <div class="modal-parent" *ngIf="taskShow">
