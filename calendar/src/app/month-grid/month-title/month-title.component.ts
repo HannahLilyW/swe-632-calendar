@@ -54,6 +54,12 @@ export class MonthTitleComponent implements OnInit {
     this.dateChange.emit(new Date(parseInt(this.formGroup.controls.year.value), parseInt(this.formGroup.controls.month.value)));
   }
 
+  goToToday = () => {
+    this.dateChange.emit(new Date());
+    this.formGroup.controls.month.setValue(new Date().getMonth());
+    this.formGroup.controls.year.setValue(new Date().getFullYear());
+  }
+
   goToNextMonth = () => {
     this.next.emit();
     this.formGroup.controls.month.setValue((parseInt(this.formGroup.controls.month.value) + 1) % 12);

@@ -19,6 +19,9 @@ import { NotesComponent } from './notes/notes.component';
 
 import { NewlinePipe } from 'src/app/pipes/newline.pipe';
 import { ToastComponent } from './shared/toast/toast.component';
+import { NotesSidebarComponent } from './shared/notes-sidebar/notes-sidebar.component';
+import { ActivityLogSidebarComponent } from './shared/activity-log-sidebar/activity-log-sidebar.component';
+import { ActivityLogComponent } from './activity-log/activity-log.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { ToastComponent } from './shared/toast/toast.component';
     NoteModalComponent,
     NotesComponent,
     NewlinePipe,
-    ToastComponent
+    ToastComponent,
+    NotesSidebarComponent,
+    ActivityLogSidebarComponent,
+    ActivityLogComponent
   ],
   imports: [
     BrowserModule,
