@@ -14,6 +14,7 @@ export class MonthGridComponent implements OnInit {
   // Includes the last few days of the previous month and the next few days of the next month.
   days: Date[] = [];
   month: number;
+  date: number;
   year: number;
   singleDay: Date;
   taskShow = false;
@@ -38,8 +39,7 @@ export class MonthGridComponent implements OnInit {
   }
 
   goToMonth = (newDate: Date) => {
-    this.singleDay.setMonth(newDate.getMonth());
-    this.singleDay.setFullYear(newDate.getFullYear());
+    this.singleDay = newDate;
     this.populateDaysFromSingleDay(this.singleDay);
   }
 
@@ -53,6 +53,7 @@ export class MonthGridComponent implements OnInit {
    *  or the last of the month singleDay is in if the last is a Saturday
    */
   populateDaysFromSingleDay = (singleDay: Date) => {
+    console.log(singleDay);
     this.days = [];
 
     // Get first day of month singleDay is in
@@ -87,6 +88,7 @@ export class MonthGridComponent implements OnInit {
     }
     this.month = singleDay.getMonth();
     this.year = singleDay.getFullYear();
+    this.date = singleDay.getDate();
   }
 
   showTaskModal = () => { this.taskShow = true; };
