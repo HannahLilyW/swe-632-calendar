@@ -66,8 +66,13 @@ export class MonthTitleComponent implements OnInit {
     this.dateChange.emit(new Date(parseInt(this.formGroup.controls.year.value), parseInt(this.formGroup.controls.month.value), parseInt(this.formGroup.controls.date.value)));
   }
 
+  goToToday = () => {
+    this.formGroup.controls.month.setValue(new Date().getMonth());
+    this.formGroup.controls.year.setValue(new Date().getFullYear());
+    this.dateChange.emit(new Date());
+  }
+
   goToNextMonth = (emit:boolean = true) => {
-    console.log(emit);
     if (emit) this.next.emit();
     this.formGroup.controls.month.setValue((parseInt(this.formGroup.controls.month.value) + 1) % 12);
     if (parseInt(this.formGroup.controls.month.value) === 0) {
@@ -77,7 +82,6 @@ export class MonthTitleComponent implements OnInit {
   }
 
   goToPreviousMonth = (emit:boolean = true) => {
-    console.log(emit);
     if (emit) this.previous.emit();
     this.formGroup.controls.month.setValue((parseInt(this.formGroup.controls.month.value) + 11) % 12);
     if (parseInt(this.formGroup.controls.month.value) === 11) {

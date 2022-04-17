@@ -2,20 +2,19 @@
     margin: 4px;
     padding: 4px;
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 4px;
 }
-
-.previous, .next {
-  font-size: xx-large;
+.previous, .next, .today {
+  font-size: x-large;
   display: flex;
+  align-items: center;
 }
 
 select, input {
   border: 0px;
   cursor: pointer;
-  font-size: xx-large;
+  font-size: x-large;
   width: fit-content;
   box-shadow: 0px 0px 10px lightgray;
 

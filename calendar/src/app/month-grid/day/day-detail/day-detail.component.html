@@ -10,8 +10,8 @@
                 <h3>Events</h3>
                 <button class="create-button" (click)="showNewEventModal()">+ Create New Event</button>
             </div>
-            <div class="modal-parent" *ngIf="newEventShow">
-                <app-modal (closeClick)="hideNewEventModal()">
+            <div class="modal-parent" *ngIf="newEventShow" (click)="hideNewEventModal()">
+                <app-modal (click)="$event.stopPropagation()" (closeClick)="hideNewEventModal()">
                     <app-event-modal (close)="hideNewEventModal()" [event]="newEventShow"></app-event-modal>
                 </app-modal>
             </div>
@@ -29,8 +29,8 @@
                         <button (click)="deleteEvent(event)">Yes, Delete</button>
                         <button (click)="deleteEventConfirm = null">No, Cancel</button>
                     </div>
-                    <div class="modal-parent" *ngIf="eventShow === event">
-                        <app-modal (closeClick)="hideEventModal()">
+                    <div class="modal-parent" *ngIf="eventShow === event" (click)="hideEventModal()">
+                        <app-modal (click)="$event.stopPropagation()" (closeClick)="hideEventModal()">
                             <app-event-modal (close)="hideEventModal()" [event]="event" [index]="i" [isEdit]="true"></app-event-modal>
                         </app-modal>
                     </div>
@@ -46,8 +46,8 @@
                 <h3>Tasks</h3>
                 <button class="create-button" (click)="showNewTaskModal()">+ Create New Task</button>
             </div>
-            <div class="modal-parent" *ngIf="newTaskShow">
-                <app-modal (closeClick)="hideNewTaskModal()">
+            <div class="modal-parent" *ngIf="newTaskShow" (click)="hideNewTaskModal()">
+                <app-modal (click)="$event.stopPropagation()" (closeClick)="hideNewTaskModal()">
                     <app-task-modal (close)="hideNewTaskModal()" [task]="newTaskShow"></app-task-modal>
                 </app-modal>
             </div>
@@ -65,8 +65,8 @@
                         <button (click)="deleteTask(task)">Yes, Delete</button>
                         <button (click)="deleteTaskConfirm = null">No, Cancel</button>
                     </div>
-                    <div class="modal-parent" *ngIf="taskShow === task">
-                        <app-modal (closeClick)="hideTaskModal()">
+                    <div class="modal-parent" *ngIf="taskShow === task" (click)="hideTaskModal()">
+                        <app-modal (click)="$event.stopPropagation()" (closeClick)="hideTaskModal()">
                             <app-task-modal (close)="hideTaskModal()" [task]="task" [index]="i" [isEdit]="true"></app-task-modal>
                         </app-modal>
                     </div>

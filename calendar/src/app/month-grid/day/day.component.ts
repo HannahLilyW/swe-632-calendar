@@ -26,7 +26,9 @@ export class DayComponent implements OnInit {
 
   isToday = true;
 
-  constructor(private eventService: EventService) { }
+  constructor(
+    private eventService: EventService
+  ) { }
 
   ngOnInit(): void {
     this.eventService.eventsSubject.subscribe(events => {

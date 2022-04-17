@@ -1,4 +1,6 @@
 #dayWrapper {
+    margin-left: 40px;
+    margin-right: 40px;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
 }
@@ -16,6 +18,7 @@
 @media (max-width: 768px)  {
     #mobileView {
         display: block;
+        margin-right: 40px;
     }
 
     #desktopView {
