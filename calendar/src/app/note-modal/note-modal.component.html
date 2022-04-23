@@ -1,8 +1,8 @@
-<h1>{{note ? 'Edit' : 'Create'}} Note</h1>
+<h1>{{isEdit ? 'Edit' : 'Create'}} Note</h1>
 <form [formGroup]="formGroup">
     <div>
         <div>
-            <label for="inputTitle">Title <span class="red">* (Required)</span></label>
+            <label for="inputTitle">Title <span class="red" *ngIf="!formGroup.controls.title.value">* (Required)</span></label>
         </div>
         <div>
             <input id="inputTitle" type="text" formControlName="title">
@@ -13,7 +13,7 @@
     </div>
     <div>
         <div>
-            <label for="inputText">Text <span class="red">* (Required)</span></label>
+            <label for="inputText">Text <span class="red" *ngIf="!formGroup.controls.text.value">* (Required)</span></label>
         </div>
         <div>
             <textarea id="inputText" type="text" formControlName="text"></textarea>

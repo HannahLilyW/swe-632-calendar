@@ -12,6 +12,11 @@
     }
 }
 
+.event-task-container {
+    height: 80%;
+    overflow: auto;
+}
+
 .other-month {
     background-color:  rgba(0, 0, 0, 0.3);
     color: rgba(0, 0, 0, 0.5);

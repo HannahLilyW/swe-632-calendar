@@ -1,5 +1,5 @@
 export class Note{
-    uuid: Number;
+    uuid: number;
     createDate: Date;
     updateDate: Date;
     text: string;

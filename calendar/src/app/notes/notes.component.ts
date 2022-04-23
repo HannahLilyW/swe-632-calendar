@@ -25,12 +25,18 @@ export class NotesComponent implements OnInit {
     });
   }
 
-  showNoteModal = (note: Note) => { this.noteShow = note; };
+  showNoteModal = (note: Note = null) => {
+    if (note) {
+      this.noteShow = note;
+    } else {
+      this.noteShow = new Note('', ''); 
+    }
+  };
   hideNoteModal = () => { this.noteShow = null; };
 
   deleteNote = (note: Note) => {
     this.eventService.deleteNote(note);
-    this.toastService.addToast(ToastType.success, 'Note was deleted successfully!', 5)
+    this.toastService.addToast(ToastType.success, 'Note was deleted successfully!', 5);
   }
 
 }

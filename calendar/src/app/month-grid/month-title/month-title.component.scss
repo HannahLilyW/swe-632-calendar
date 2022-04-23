@@ -1,11 +1,6 @@
-#monthTitle {
-    text-align: center;
-    padding: 20px;
-    font-size: xx-large;
-    flex-basis: 80%;
-}
-.month-title-container{
+.month-title-container, .mobile-title-container {
     margin: 4px;
+    padding: 4px;
     display: flex;
     justify-content: center;
     gap: 4px;
@@ -32,6 +27,12 @@ select, input {
 .mobile-title-container {
   display: none;
 }
-.previous,.next{
-  flex-basis: 20%;
+
+@media (max-width: 768px)  {
+  .mobile-title-container {
+      display: flex;
+  }
+  .month-title-container {
+      display: none;
+  }
 }

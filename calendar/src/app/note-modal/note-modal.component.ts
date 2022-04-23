@@ -14,6 +14,7 @@ export class NoteModalComponent implements OnInit {
 
   @Output() close: EventEmitter<void> = new EventEmitter();
   @Input() note: Note;
+  @Input() isEdit: boolean = false;
   @Input() index: number;
 
   formGroup: FormGroup;
@@ -37,7 +38,7 @@ export class NoteModalComponent implements OnInit {
   }
 
   save = () => {
-    if (this.note) {
+    if (this.isEdit) {
       // edit
       this.note.updateDate = new Date();
       this.note.title = this.formGroup.controls.title.value;

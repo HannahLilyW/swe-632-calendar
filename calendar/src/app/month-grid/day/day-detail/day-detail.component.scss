@@ -53,3 +53,25 @@
         background-color: rgba(255, 120, 200, 0.8);
     }
 }
+
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tasks-events-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.no-events-tasks {
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .tasks-events-grid{
+        grid-template-columns: 100%;
+    }
+}

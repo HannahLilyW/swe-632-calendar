@@ -1,0 +1,29 @@
+.notes, .notes-placeholder {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    background-color: white;
+}
+
+.notes-placeholder {
+    width: 24px;
+    cursor: pointer;
+}
+
+.show-button, .hide-button {
+    background-color: white;
+    height: 32px;
+    width: 32px;
+    top: 50%;
+    right: 16px;
+    position: relative;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    font-size: 32px;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    }
+}

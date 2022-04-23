@@ -23,3 +23,8 @@
         </div>
     </div>
 </div>
+<div class="modal-parent" *ngIf="noteShow && noteShow.title === ''" (click)="hideNoteModal()">
+    <app-modal (click)="$event.stopPropagation()" (closeClick)="hideNoteModal()">
+        <app-note-modal (close)="hideNoteModal()"></app-note-modal>
+    </app-modal>
+</div>
