@@ -3,12 +3,53 @@
     align-items: center;
 }
 
-.task-event-container {
+.task-event-outer-container {
+    overflow: auto;
     margin: 4px;
+    max-height: 75vh;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+
+.create-button {
+    &.event {
+        background-color: rgba(255, 120, 200, 0.8);
+    }
+
+    &.task {
+        background-color: rgba(230, 135, 34, 0.8);
+    }
+}
+
+.task-container {
     padding: 4px;
-    box-shadow: 0px 0px 10px lightgray;
+    &:nth-child(even) {
+        background-color: rgba(230, 135, 34, 0.1);
+    }
+    &:nth-child(odd) {
+        background-color: rgba(230, 135, 34, 0.2);
+    }
 
     &:hover {
-        box-shadow: 0px 0px 10px gray;
+        background-color: rgba(230, 135, 34, 0.3);
+    }
+    button {
+        background-color: rgba(230, 135, 34, 0.8);
+    }
+}
+
+.event-container {
+    padding: 4px;
+    &:nth-child(even) {
+        background-color: rgba(255, 120, 200, 0.1);
+    }
+    &:nth-child(odd) {
+        background-color: rgba(255, 120, 200, 0.2);
+    }
+
+    &:hover {
+        background-color: rgba(255, 120, 200, 0.3);
+    }
+    button {
+        background-color: rgba(255, 120, 200, 0.8);
     }
 }

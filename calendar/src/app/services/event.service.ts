@@ -78,16 +78,52 @@ export class EventService {
   }
 
   mockData = () => {
-    this.events.push(new Event(new Date('2022-02-14T11:00:00'),
-                                new Date('2022-02-14T13:00:00'),
+    this.events.push(new Event(new Date('2022-04-14T11:00:00'),
+                                new Date('2022-04-14T13:00:00'),
                                 'Birthday Party: Hannah'));
+    this.events.push(new Event(new Date('2022-04-14T11:00:00'),
+                                new Date('2022-04-14T13:00:00'),
+                                'Birthday Party: Jhabiz'));
+    this.events.push(new Event(new Date('2022-04-14T11:00:00'),
+                                new Date('2022-04-14T13:00:00'),
+                                'Birthday Party: Yugank'));
+    this.events.push(new Event(new Date('2022-04-14T14:00:00'),
+                                new Date('2022-04-14T15:00:00'),
+                                'Shopping trip'));
+    this.events.push(new Event(new Date('2022-04-14T16:00:00'),
+                                new Date('2022-04-14T17:00:00'),
+                                'Dinner'));
 
-    this.tasks.push(new Task(new Date('2022-02-16T16:30:00'),
-                              'SWE 632 HW1 Due'));
+    this.tasks.push(new Task(new Date('2022-04-14T16:30:00'),
+                              'Homework'));
+    this.tasks.push(new Task(new Date('2022-04-14T16:30:00'),
+                              'More Homework'));
+    this.tasks.push(new Task(new Date('2022-04-14T16:30:00'),
+                              'So Much Homework'));
+    this.tasks.push(new Task(new Date('2022-04-14T16:30:00'),
+                              'Chill'));
 
     this.notes.push(new Note(
       'Grocery List',
       'Eggs, bread, butter',
+      new Date('2022-02-06T10:00:00'),
+      new Date('2022-02-08T11:00:00')
+    ));
+    this.notes.push(new Note(
+      'Thoughts',
+      'Programming is kinda fun I guess',
+      new Date('2022-02-06T10:00:00'),
+      new Date('2022-02-08T11:00:00')
+    ));
+    this.notes.push(new Note(
+      'Thoughts 2',
+      'Not really tho',
+      new Date('2022-02-06T10:00:00'),
+      new Date('2022-02-08T11:00:00')
+    ));
+    this.notes.push(new Note(
+      'Thoughts 3',
+      'Hannah is an edgelord',
       new Date('2022-02-06T10:00:00'),
       new Date('2022-02-08T11:00:00')
     ));

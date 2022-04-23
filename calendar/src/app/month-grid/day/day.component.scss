@@ -4,11 +4,11 @@
     padding: 4px;
     cursor: pointer;
 
-    box-shadow: 0px 0px 10px lightgray;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
     margin: 4px;
 
     &:hover {
-        box-shadow: 0px 0px 10px gray;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
     }
 }
 
@@ -16,3 +16,35 @@
     background-color:  rgba(0, 0, 0, 0.3);
     color: rgba(0, 0, 0, 0.5);
 }
+
+.preview {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 4px;
+    font-size: small;
+}
+
+.name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.date-number {
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+    border-radius: 50%;
+
+    &.today {
+        background-color: rgba(64, 156, 255, 0.8);
+        color: white;
+    
+        &.other-month {
+            background-color: rgba(64, 156, 255, 0.3);
+        }
+    }
+}
+

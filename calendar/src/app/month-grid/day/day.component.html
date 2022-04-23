@@ -1,10 +1,30 @@
-<div class="day-container" [ngClass]="{'other-month': this.day.getMonth() !== this.month}" (click)="showDayDetail()">
-    {{date}}
-    <div *ngIf="numOfEvents">{{numOfEvents}} Event{{ numOfEvents >1 ? 's' : '' }} </div>
-    <div *ngIf="numOfTasks">{{numOfTasks}} Task{{ numOfTasks >1 ? 's' : '' }}  </div>
-    <div class="modal-parent" *ngIf="showDetail">
-        <app-modal (closeClick)="hideDayDetail()">
-            <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]=tasks [events]=events [day]=day>
+<div class="day-container" [ngClass]="{'other-month': this.date.getMonth() !== this.month}" (click)="showDayDetail()">
+    <div class="date-number" [ngClass]="{'today': this.isToday}">
+        {{date | date: 'd'}}
+    </div>
+    <div class="event-task-container">
+        <div *ngFor="let event of events" class="preview event">
+            <svg class="icon icon-clock" viewBox="0 0 32 32">
+                <path d="M20.586 23.414l-6.586-6.586v-8.828h4v7.172l5.414 5.414zM16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 28c-6.627 0-12-5.373-12-12s5.373-12 12-12c6.627 0 12 5.373 12 12s-5.373 12-12 12z">
+                </path>
+            </svg>
+            <div class="name">
+                {{event.name}}
+            </div>
+        </div>
+        <div *ngFor="let task of tasks" class="preview task">
+            <svg class="icon icon-checkmark" viewBox="0 0 32 32">
+                <path d="M27 4l-15 15-7-7-5 5 12 12 20-20z">
+                </path>
+            </svg>
+            <div class="name">
+                {{task.name}}
+            </div>
+        </div>
+    </div>
+    <div class="modal-parent" *ngIf="showDetail" (click)="$event.stopPropagation(); hideDayDetail()">
+        <app-modal (click)="$event.stopPropagation()" (closeClick)="hideDayDetail()">
+            <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]="tasks" [events]="events" [day]="date">
             </app-day-detail>
         </app-modal>
     </div>

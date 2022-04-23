@@ -1,26 +1,25 @@
-<h2>Notes</h2>
-<div class="note-container" *ngFor="let note of notes; index as i">
-    <div class="title">
+<div class="title-left">
+    <h2>Notes</h2>
+    <button (click)="showNoteModal()">+ Create New Note</button>
+</div>
+<div class="note-parent">
+    <div class="note-container" *ngFor="let note of notes; index as i">
         <div class="title-left">
             <h3>{{note.title}}</h3>
             <button (click)="showNoteModal(note)">✎ Edit</button>
         </div>
-        <div class="right">
-            <h4>Created: {{note.createDate | date:'short'}}</h4>
-            <h4>Updated: {{note.updateDate | date:'short'}}</h4>
+        <h4>Created: {{note.createDate | date:'short'}}</h4>
+        <h4>Updated: {{note.updateDate | date:'short'}}</h4>
+        <p [innerHTML]="note.text | newline"></p>
+        <button *ngIf="deleteNoteConfirm !== note" (click)="deleteNoteConfirm = note" class="dangerous">🗑️</button>
+        <div class="delete-confirm" *ngIf="deleteNoteConfirm === note">Are you sure?
+            <button (click)="deleteNote(note)" class="dangerous">Yes, Delete</button>
+            <button (click)="deleteNoteConfirm = null">No, Cancel</button>
         </div>
-    </div>
-    <p [innerHTML]="note.text | newline"></p>
-    
-    <!-- <button (click)="deleteNote(note)">🗑️ Delete</button> -->
-    <button *ngIf="deleteNoteConfirm !== note" (click)="deleteNoteConfirm = note">🗑️ Delete</button>
-    <div class="delete-confirm" *ngIf="deleteNoteConfirm === note">Are you sure?
-        <button (click)="deleteNote(note)">Yes, Delete</button>
-        <button (click)="deleteNoteConfirm = null">No, Cancel</button>
-    </div>
-    <div class="modal-parent" *ngIf="noteShow === note">
-        <app-modal (closeClick)="hideNoteModal()">
-            <app-note-modal (close)="hideNoteModal()" [note]="note" [index]="i"></app-note-modal>
-        </app-modal>
+        <div class="modal-parent" *ngIf="noteShow === note" (click)="hideNoteModal()">
+            <app-modal (click)="$event.stopPropagation()" (closeClick)="hideNoteModal()">
+                <app-note-modal (close)="hideNoteModal()" [note]="note" [index]="i" [isEdit]="true"></app-note-modal>
+            </app-modal>
+        </div>
     </div>
 </div>
