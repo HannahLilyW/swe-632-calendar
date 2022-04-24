@@ -2,6 +2,10 @@
     <div class="date-number" [ngClass]="{'today': this.isToday}">
         {{date | date: 'd'}}
     </div>
+    <div class="count">
+        <div>{{ events.length }} Events</div>
+        <div>{{ tasks.length }} Tasks</div>
+    </div>
     <div class="event-task-container">
         <div *ngFor="let event of events" class="preview event">
             <svg class="icon icon-calendar" viewBox="0 0 32 32">
@@ -22,10 +26,10 @@
             </div>
         </div>
     </div>
-    <div class="modal-parent" *ngIf="showDetail" (click)="$event.stopPropagation(); hideDayDetail()">
-        <app-modal (click)="$event.stopPropagation()" (closeClick)="hideDayDetail()">
-            <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]="tasks" [events]="events" [day]="date">
-            </app-day-detail>
-        </app-modal>
-    </div>
+</div>
+<div class="modal-parent" *ngIf="showDetail" (click)="$event.stopPropagation(); hideDayDetail()">
+    <app-modal (click)="$event.stopPropagation()" (closeClick)="hideDayDetail()">
+        <app-day-detail class="detail" (closeClick)="hideDayDetail()" [tasks]="tasks" [events]="events" [day]="date">
+        </app-day-detail>
+    </app-modal>
 </div>

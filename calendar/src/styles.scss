@@ -51,7 +51,10 @@ button {
 }
 
 svg {
+    display: block;
+    fill: white;
     flex-shrink: 0;
+    stroke: white;
 }
 
 .recurring-checkbox {
