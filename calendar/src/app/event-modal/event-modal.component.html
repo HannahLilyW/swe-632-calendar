@@ -1,22 +1,26 @@
 <h1>{{isEdit ? 'Edit' : 'Create'}} Event</h1>
 <form [formGroup]="formGroup">
     <div>
-        <div>
-            <label for="inputName">Name <span class="red" *ngIf="!formGroup.controls.name.value">* (Required)</span></label>
-        </div>
-        <div>
-            <input id="inputName" type="text" formControlName="name">
+        <div class="input-container">
+            <div>
+                <label for="inputName">Name: <span class="red" *ngIf="!formGroup.controls.name.value">* (Required)</span></label>
+            </div>
+            <div>
+                <input id="inputName" type="text" formControlName="name">
+            </div>
         </div>
         <div class="errors" *ngIf="formGroup.controls.name.touched && formGroup.controls.name.errors && formGroup.controls.name.errors.required">
             Please enter a name.
         </div>
     </div>
     <div>
-        <div>
-            <label for="inputDate">Date <span class="red" *ngIf="!formGroup.controls.date.value">* (Required)</span></label>
-        </div>
-        <div>
-            <input id="inputDate" type="date" formControlName="date">
+        <div class="input-container">
+            <div>
+                <label for="inputDate">Date: <span class="red" *ngIf="!formGroup.controls.date.value">* (Required)</span></label>
+            </div>
+            <div>
+                <input id="inputDate" type="date" formControlName="date">
+            </div>
         </div>
         <div class="errors" *ngIf="formGroup.controls.date.touched && formGroup.controls.date.errors && formGroup.controls.date.errors.required">
             Please enter a valid date.
@@ -24,8 +28,9 @@
     </div>
     <div class="start-end-time-container">
         <div>
+
             <div>
-                <label for="inputStartTime">Start Time <span class="red" *ngIf="!formGroup.controls.startTime.value">* (Required)</span></label>
+                <label for="inputStartTime">Start Time: <span class="red" *ngIf="!formGroup.controls.startTime.value">* (Required)</span></label>
             </div>
             <div>
                 <input id="inputStartTime" type="time" formControlName="startTime">
@@ -37,7 +42,7 @@
         <div> - </div>
         <div>
             <div>
-                <label for="inputEndTime">End Time <span class="red" *ngIf="!formGroup.controls.endTime.value">* (Required)</span></label>
+                <label for="inputEndTime">End Time: <span class="red" *ngIf="!formGroup.controls.endTime.value">* (Required)</span></label>
             </div>
             <div>
                 <input id="inputEndTime" type="time" formControlName="endTime">

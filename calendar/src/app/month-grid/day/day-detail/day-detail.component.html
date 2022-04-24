@@ -8,7 +8,7 @@
                     </path>
                 </svg>
                 <h3>Events</h3>
-                <button class="create-button event" (click)="showNewEventModal()">+ Create New Event</button>
+                <button class="create-button event" (click)="showNewEventModal()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></button>
             </div>
             <div class="modal-parent" *ngIf="newEventShow" (click)="hideNewEventModal()">
                 <app-modal (click)="$event.stopPropagation()" (closeClick)="hideNewEventModal()">
@@ -20,7 +20,7 @@
                 <div class="event-container" *ngFor="let event of events; index as i">
                     <div class="name-container">
                         <h4>{{event.name}}</h4>
-                        <button (click)="showEventModal(event)">✎ Edit</button>
+                        <button (click)="showEventModal(event)">✎</button>
                     </div>
                     <div>{{event.startDate | date:'h:mm a'}} - {{event.endDate | date:'h:mm a'}}</div>
                     <button *ngIf="deleteEventConfirm !== event" (click)="deleteEventConfirm = event" class="dangerous">🗑️</button>
@@ -44,7 +44,7 @@
                     </path>
                 </svg>
                 <h3>Tasks</h3>
-                <button class="create-button task" (click)="showNewTaskModal()">+ Create New Task</button>
+                <button class="create-button task" (click)="showNewTaskModal()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></button>
             </div>
             <div class="modal-parent" *ngIf="newTaskShow" (click)="hideNewTaskModal()">
                 <app-modal (click)="$event.stopPropagation()" (closeClick)="hideNewTaskModal()">
@@ -56,7 +56,7 @@
                 <div class="task-container" *ngFor="let task of tasks; index as i">
                     <div class="name-container">
                         <h4>{{task.name}}</h4>
-                        <button (click)="showTaskModal(task)">✎ Edit</button>
+                        <button (click)="showTaskModal(task)">✎</button>
                     </div>
                     <div>Due: {{task.dueDate | date:'h:mm a'}}</div>
                     <button *ngIf="deleteTaskConfirm !== task" (click)="deleteTaskConfirm = task" class="dangerous">🗑️</button>

@@ -1,33 +1,39 @@
 <h1>{{isEdit ? 'Edit' : 'Create'}} Task</h1>
 <form [formGroup]="formGroup">
     <div>
-        <div>
-            <label for="inputName">Name <span class="red" *ngIf="!formGroup.controls.name.value">* (Required)</span></label>
-        </div>
-        <div>
-            <input id="inputName" type="text" formControlName="name">
+        <div class="input-container">
+            <div>
+                <label for="inputName">Name: <span class="red" *ngIf="!formGroup.controls.name.value">* (Required)</span></label>
+            </div>
+            <div>
+                <input id="inputName" type="text" formControlName="name">
+            </div>
         </div>
         <div class="errors" *ngIf="formGroup.controls.name.touched && formGroup.controls.name.errors && formGroup.controls.name.errors.required">
             Please enter a name.
         </div>
     </div>
     <div>
-        <div>
-            <label for="inputDate">Due Date <span class="red" *ngIf="!formGroup.controls.dueDate.value">* (Required)</span></label>
-        </div>
-        <div>
-            <input id="inputDate" type="date" formControlName="dueDate">
+        <div class="input-container">
+            <div>
+                <label for="inputDate">Due Date: <span class="red" *ngIf="!formGroup.controls.dueDate.value">* (Required)</span></label>
+            </div>
+            <div>
+                <input id="inputDate" type="date" formControlName="dueDate">
+            </div>
         </div>
         <div class="errors" *ngIf="formGroup.controls.dueDate.touched && formGroup.controls.dueDate.errors && formGroup.controls.dueDate.errors.required">
             Please enter a valid date.
         </div>
     </div>
     <div>
-        <div>
-            <label for="inputTime">Due Time <span class="red" *ngIf="!formGroup.controls.dueTime.value">* (Required)</span></label>
-        </div>
-        <div>
-            <input id="inputTime" type="time" formControlName="dueTime">
+        <div class="input-container">
+            <div>
+                <label for="inputTime">Due Time: <span class="red" *ngIf="!formGroup.controls.dueTime.value">* (Required)</span></label>
+            </div>
+            <div>
+                <input id="inputTime" type="time" formControlName="dueTime">
+            </div>
         </div>
         <div class="errors" *ngIf="formGroup.controls.dueTime.touched && formGroup.controls.dueTime.errors && formGroup.controls.dueTime.errors.required">
             Please enter a valid time.

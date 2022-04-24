@@ -1,9 +1,8 @@
 .day-container {
     box-sizing: border-box;
-    height: 100px;
+    height: 200px;
     padding: 4px;
     cursor: pointer;
-
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
     margin: 4px;
 
@@ -12,9 +11,52 @@
     }
 }
 
+.count {
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.04);
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    left: 0;
+    padding: 20px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .25s ease-out;
+    visibility: hidden;
+    width: 100%;
+    z-index: 2;
+}
+
+@media screen and (max-width: 768px) {
+    .day-container {
+        height: 75vh;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .day-container:hover {
+        .count { 
+            opacity: 1;
+            visibility: visible;
+        }
+        .event-task-container{
+            filter: blur(10px);
+        }
+        transform: scale(1.2, 1.2);
+        transition: transform .25s ease-out;
+        z-index: 100;
+    }
+}
+
 .event-task-container {
+    filter: blur(0px);
     height: 80%;
     overflow: auto;
+    transition: filter .25s ease-out;
 }
 
 .other-month {
@@ -23,11 +65,22 @@
 }
 
 .preview {
+    align-items: center;
+    color: white;
     display: flex;
     flex-flow: row nowrap;
-    align-items: center;
-    gap: 4px;
     font-size: small;
+    border-radius: 200px;
+    gap: 4px;
+    margin-bottom: 4px;
+    padding: 4px;
+
+    &.event {
+        background-color: rgba(255, 120, 200, 0.8)
+    }
+    &.task {
+        background-color: rgba(230, 135, 34, 0.8)
+    }
 }
 
 .name {
