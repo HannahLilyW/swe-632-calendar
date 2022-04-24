@@ -1,58 +1,74 @@
 <h1>{{isEdit ? 'Edit' : 'Create'}} Task</h1>
 <form [formGroup]="formGroup">
-    <div>
-        <div>
-            <label for="inputName">Name <span class="red" *ngIf="!formGroup.controls.name.value">* (Required)</span></label>
+    <div class="input-container">
+        <div class="label-right">
+            <label for="inputName">Name: </label>
         </div>
         <div>
-            <input id="inputName" type="text" formControlName="name">
+            <div>
+                <input id="inputName" type="text" formControlName="name">
+                <span class="red" *ngIf="!formGroup.controls.name.value">* (Required)</span>
+            </div>
         </div>
         <div class="errors" *ngIf="formGroup.controls.name.touched && formGroup.controls.name.errors && formGroup.controls.name.errors.required">
             Please enter a name.
         </div>
-    </div>
-    <div>
-        <div>
-            <label for="inputDate">Due Date <span class="red" *ngIf="!formGroup.controls.dueDate.value">* (Required)</span></label>
+        <div class="label-right">
+            <label for="inputDate">Due Date: </label>
         </div>
         <div>
-            <input id="inputDate" type="date" formControlName="dueDate">
+            <div>
+                <input id="inputDate" type="date" formControlName="dueDate">
+                <span class="red" *ngIf="!formGroup.controls.dueDate.value">* (Required)</span>
+            </div>
+            <div class="errors" *ngIf="formGroup.controls.dueDate.touched && formGroup.controls.dueDate.errors && formGroup.controls.dueDate.errors.required">
+                Please enter a valid date.
+            </div>
         </div>
-        <div class="errors" *ngIf="formGroup.controls.dueDate.touched && formGroup.controls.dueDate.errors && formGroup.controls.dueDate.errors.required">
-            Please enter a valid date.
+        <div class="label-right">
+            <label for="inputTime">Due Time: </label>
         </div>
-    </div>
-    <div>
         <div>
-            <label for="inputTime">Due Time <span class="red" *ngIf="!formGroup.controls.dueTime.value">* (Required)</span></label>
+            <div>
+                <input id="inputTime" type="time" formControlName="dueTime">
+                <span class="red" *ngIf="!formGroup.controls.dueTime.value">* (Required)</span>
+            </div>
+            <div class="errors" *ngIf="formGroup.controls.dueTime.touched && formGroup.controls.dueTime.errors && formGroup.controls.dueTime.errors.required">
+                Please enter a valid time.
+            </div>
+        </div>
+        <div class="label-right" (click)="toggleRecurring()">
+            <label for="inputRecurring">Recurring: </label>
         </div>
         <div>
-            <input id="inputTime" type="time" formControlName="dueTime">
+            <label class="switch">
+                <input id="inputRecurring" type="checkbox" formControlName="recurring">
+                <span class="slider round"></span>
+            </label>
         </div>
-        <div class="errors" *ngIf="formGroup.controls.dueTime.touched && formGroup.controls.dueTime.errors && formGroup.controls.dueTime.errors.required">
-            Please enter a valid time.
-        </div>
-    </div>
-    <div class="recurring-checkbox" (click)="toggleRecurring()">
-        <input id="inputReccuring" type="checkbox" formControlName="recurring">
-        <label for="inputRecurring">Make Task Recurring</label>
-    </div>
-    <div *ngIf="formGroup.controls.recurring.value">
-        <div class="recurring-frequency">
-            <label for="recurringFrequency">Task should repeat: </label>
-            <select class="form-control" id="recurringFrequency" formControlName="recurringFrequency">
-                <option value="DAILY" selected>Daily</option>
-                <option value="WEEKLY">Weekly</option>
-                <option value="MONTHLY">Monthly</option>
-            </select>
-            <span class="red" *ngIf="!formGroup.controls.recurringFrequency.value"> * (Required)</span>
-            <label for="recurringUntil"> Until: </label>
-            <input id="recurringUntil" type="date" formControlName="recurringUntil">
-            <span class="red" *ngIf="!formGroup.controls.recurringUntil.value"> * (Required)</span>
-        </div>
-        <div class="errors" *ngIf="formGroup.errors && formGroup.errors['dateBeforeRecurringUntil']">
-            {{ formGroup.errors['dateBeforeRecurringUntil'] }}
-        </div>
+        <ng-template [ngIf]="formGroup.controls.recurring.value">
+            <div class="label-right">
+                <label for="recurringFrequency">Task should repeat: </label>
+            </div>
+            <div>
+                <select class="form-control" id="recurringFrequency" formControlName="recurringFrequency">
+                    <option value="DAILY" selected>Daily</option>
+                    <option value="WEEKLY">Weekly</option>
+                    <option value="MONTHLY">Monthly</option>
+                </select>
+                <span class="red" *ngIf="!formGroup.controls.recurringFrequency.value">* (Required) </span>
+            </div>
+            <div class="label-right">
+                <label for="recurringUntil"> Until: </label>
+            </div>
+            <div>
+                <input id="recurringUntil" type="date" formControlName="recurringUntil">
+                <span class="red" *ngIf="!formGroup.controls.recurringUntil.value">* (Required)</span>
+                <div class="errors" *ngIf="formGroup.errors && formGroup.errors['dateBeforeRecurringUntil']">
+                    {{ formGroup.errors['dateBeforeRecurringUntil'] }}
+                </div>
+            </div>
+        </ng-template>
     </div>
     <button (click)="save()" [disabled]="!formGroup.valid">Save</button>
 </form>

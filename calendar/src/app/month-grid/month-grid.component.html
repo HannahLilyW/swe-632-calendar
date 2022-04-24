@@ -14,19 +14,3 @@
 <div id="mobileView">
     <app-day [day]='singleDay' [month]='month'></app-day>
 </div>
-
-<div class="modal-parent" *ngIf="taskShow" (click)="hideTaskModal()">
-    <app-modal (click)="$event.stopPropagation()" (closeClick)="hideTaskModal()">
-        <app-task-modal (close)="hideTaskModal()"></app-task-modal>
-    </app-modal>
-</div>
-<div class="modal-parent" *ngIf="eventShow" (click)="hideEventModal()">
-    <app-modal (click)="$event.stopPropagation()" (closeClick)="hideEventModal()" *ngIf="eventShow">
-        <app-event-modal (close)="hideEventModal()"></app-event-modal>
-    </app-modal>
-</div>
-<div class="modal-parent" *ngIf="noteShow" (click)="hideNoteModal()">
-    <app-modal (click)="$event.stopPropagation()" (closeClick)="hideNoteModal()" *ngIf="noteShow">
-        <app-note-modal (close)="hideNoteModal()"></app-note-modal>
-    </app-modal>
-</div>

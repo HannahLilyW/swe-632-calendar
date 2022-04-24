@@ -1,0 +1,22 @@
+.input-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+}
+
+.label-right {
+    text-align: right;
+}
+
+select, input, button {
+    background-color: rgba(230, 135, 34, 0.8);
+}
+
+input:checked + .slider {
+    background-color: rgba(230, 135, 34, 0.8);
+}
+
+input, select {
+    width: 80%;
+    box-sizing: content-box;
+}

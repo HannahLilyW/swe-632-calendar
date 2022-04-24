@@ -1,4 +1,22 @@
+.input-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+}
+
+.label-right {
+    text-align: right;
+}
+
 textarea {
     height: 20vh;
+}
+
+select, input, textarea, button {
+    background-color: rgba(170, 24, 255, 0.8);
+}
+
+input, textarea {
     width: 80%;
+    box-sizing: content-box;
 }

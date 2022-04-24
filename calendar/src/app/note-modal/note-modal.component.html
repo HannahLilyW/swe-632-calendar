@@ -1,25 +1,29 @@
 <h1>{{isEdit ? 'Edit' : 'Create'}} Note</h1>
 <form [formGroup]="formGroup">
-    <div>
-        <div>
-            <label for="inputTitle">Title <span class="red" *ngIf="!formGroup.controls.title.value">* (Required)</span></label>
+    <div class="input-container">
+        <div class="label-right">
+            <label for="inputTitle">Title: </label>
         </div>
         <div>
-            <input id="inputTitle" type="text" formControlName="title">
+            <div>
+                <input id="inputTitle" type="text" formControlName="title">
+                <span class="red" *ngIf="!formGroup.controls.title.value">* (Required)</span>
+            </div>
+            <div class="errors" *ngIf="formGroup.controls.title.touched && formGroup.controls.title.errors && formGroup.controls.title.errors.required">
+                Please enter a title.
+            </div>
         </div>
-        <div class="errors" *ngIf="formGroup.controls.title.touched && formGroup.controls.title.errors && formGroup.controls.title.errors.required">
-            Please enter a title.
+        <div class="label-right">
+            <label for="inputText">Text: </label>
         </div>
-    </div>
-    <div>
         <div>
-            <label for="inputText">Text <span class="red" *ngIf="!formGroup.controls.text.value">* (Required)</span></label>
-        </div>
-        <div>
-            <textarea id="inputText" type="text" formControlName="text"></textarea>
-        </div>
-        <div class="errors" *ngIf="formGroup.controls.text.touched && formGroup.controls.text.errors && formGroup.controls.text.errors.required">
-            Please enter some text.
+            <div>
+                <textarea id="inputText" type="text" formControlName="text"></textarea>
+                <span class="red" *ngIf="!formGroup.controls.text.value">* (Required)</span>
+                <div class="errors" *ngIf="formGroup.controls.text.touched && formGroup.controls.text.errors && formGroup.controls.text.errors.required">
+                    Please enter some text.
+                </div>
+            </div>
         </div>
     </div>
     <button (click)="save()" [disabled]="!formGroup.valid">Save</button>
